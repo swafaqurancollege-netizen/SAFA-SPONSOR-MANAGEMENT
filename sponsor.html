@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -303,7 +304,7 @@ body{
   margin-bottom:18px;
 }
 
-/* ONLINE PAYMENT */
+/* PAYMENT */
 
 .amount-box{
   background:#f3faf6;
@@ -379,6 +380,22 @@ body{
   margin-top:10px;
   font-weight:bold;
   color:#075b40;
+}
+
+.upi-pay-button{
+  width:100%;
+  margin-top:15px;
+  padding:13px;
+  border:0;
+  border-radius:10px;
+  background:#087653;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.upi-pay-button:hover{
+  background:#075b40;
 }
 
 .bank-box{
@@ -700,59 +717,55 @@ footer{
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
-
 <!-- LOADING -->
 
-<div
-  class="loading"
-  id="loading"
->
+<div class="loading" id="loading">
   Loading Sponsor Dashboard...
 </div>
-
 
 <!-- HEADER -->
 
 <header class="top-header">
 
-  <img
-    src="1000892841.jpg"
-    class="college-photo"
-    alt="Safa Hifzul Qur'an College"
-  >
+<img
+src="1000892841.jpg"
+class="college-photo"
+alt="Safa Hifzul Qur'an College"
+
+>
 
   <div class="photo-overlay"></div>
 
   <div class="header-content">
 
-    <div class="arabic-header">
-      السلام عليكم ورحمة الله وبركاته
-    </div>
+```
+<div class="arabic-header">
+  السلام عليكم ورحمة الله وبركاته
+</div>
 
-    <div class="header-title">
-      SAFA HIFZUL QUR'AN COLLEGE
-    </div>
+<div class="header-title">
+  SAFA HIFZUL QUR'AN COLLEGE
+</div>
 
-    <div class="header-subtitle">
-      SPONSOR MANAGEMENT PORTAL
-    </div>
+<div class="header-subtitle">
+  SPONSOR MANAGEMENT PORTAL
+</div>
 
-    <div class="quran-quote">
-      خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ
-    </div>
+<div class="quran-quote">
+  خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ
+</div>
+```
 
   </div>
 
 </header>
 
-
 <div class="layout">
-
 
 <!-- SIDEBAR -->
 
@@ -760,124 +773,104 @@ footer{
 
   <div class="profile-mini">
 
-    <div
-      class="profile-circle"
-      id="profileInitial"
-    >
-      SP
-    </div>
+```
+<div
+  class="profile-circle"
+  id="profileInitial"
+>
+  SP
+</div>
 
-    <div>
+<div>
 
-      <h3 id="sideName">
-        Sponsor
-      </h3>
+  <h3 id="sideName">
+    Sponsor
+  </h3>
 
-      <p id="sideSponsorId">
-        SP-1001
-      </p>
+  <p id="sideSponsorId">
+    SP-1001
+  </p>
 
-    </div>
+</div>
+```
 
   </div>
 
-
   <nav class="menu">
 
-    <a
-      href="#dashboard"
-      class="menu-item active"
-    >
-      🏠 Dashboard
-    </a>
+```
+<a href="#dashboard" class="menu-item active">
+  🏠 Dashboard
+</a>
 
-    <a
-      href="#payment"
-      class="menu-item"
-    >
-      💳 Payment
-    </a>
+<a href="#payment" class="menu-item">
+  💳 Payment
+</a>
 
-    <a
-      href="#bank"
-      class="menu-item"
-    >
-      🏦 Bank / UPI
-    </a>
+<a href="#bank" class="menu-item">
+  🏦 Bank / UPI
+</a>
 
-    <a
-      href="#verify"
-      class="menu-item"
-    >
-      🧾 Submit Payment
-    </a>
+<a href="#verify" class="menu-item">
+  🧾 Submit Payment
+</a>
 
-    <a
-      href="#donation"
-      class="menu-item"
-    >
-      ❤️ Special Donation
-    </a>
+<a href="#donation" class="menu-item">
+  ❤️ Special Donation
+</a>
 
-    <a
-      href="#history"
-      class="menu-item"
-    >
-      📜 History
-    </a>
+<a href="#history" class="menu-item">
+  📜 History
+</a>
+```
 
   </nav>
 
-
   <div class="sidebar-bottom">
 
-    <button
-      class="logout"
-      id="logoutBtn"
-    >
-      ⇥ Logout
-    </button>
+```
+<button class="logout" id="logoutBtn">
+  ⇥ Logout
+</button>
 
-    <div class="sidebar-quote">
-      وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ
-    </div>
+<div class="sidebar-quote">
+  وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ
+</div>
+```
 
   </div>
 
 </aside>
 
-
 <!-- MAIN -->
 
 <main class="main">
 
-
 <!-- WELCOME -->
 
-<section
-  class="welcome"
-  id="dashboard"
->
+<section class="welcome" id="dashboard">
 
   <div>
 
-    <h2>
-      Welcome,
-      <span id="welcomeName">
-        Sponsor
-      </span>
-    </h2>
+```
+<h2>
+  Welcome,
+  <span id="welcomeName">
+    Sponsor
+  </span>
+</h2>
 
-    <p>
-      Thank you for supporting
-      Safa Hifzul Qur'an College.
-    </p>
+<p>
+  Thank you for supporting
+  Safa Hifzul Qur'an College.
+</p>
 
-    <p>
-      Your contribution helps continue
-      Qur'an education and related
-      educational activities.
-    </p>
+<p>
+  Your contribution helps continue
+  Qur'an education and related
+  educational activities.
+</p>
+```
 
   </div>
 
@@ -887,132 +880,120 @@ footer{
 
 </section>
 
-
 <!-- STATS -->
 
 <section class="stats">
 
   <div class="stat-card">
 
-    <div class="stat-icon">
-      🤝
-    </div>
+```
+<div class="stat-icon">
+  🤝
+</div>
 
-    <div class="stat-title">
-      Total Sponsorship
-    </div>
+<div class="stat-title">
+  Total Sponsorship
+</div>
 
-    <div
-      class="stat-value"
-      id="totalAmount"
-    >
-      ₹0
-    </div>
+<div class="stat-value" id="totalAmount">
+  ₹0
+</div>
+```
 
   </div>
-
 
   <div class="stat-card paid-card">
 
-    <div class="stat-icon">
-      ✅
-    </div>
+```
+<div class="stat-icon">
+  ✅
+</div>
 
-    <div class="stat-title">
-      Amount Paid
-    </div>
+<div class="stat-title">
+  Amount Paid
+</div>
 
-    <div
-      class="stat-value"
-      id="paidAmount"
-    >
-      ₹0
-    </div>
+<div class="stat-value" id="paidAmount">
+  ₹0
+</div>
+```
 
   </div>
 
-
   <div class="stat-card pending-card">
 
-    <div class="stat-icon">
-      ⏳
-    </div>
+```
+<div class="stat-icon">
+  ⏳
+</div>
 
-    <div class="stat-title">
-      Remaining Amount
-    </div>
+<div class="stat-title">
+  Remaining Amount
+</div>
 
-    <div
-      class="stat-value"
-      id="balanceAmount"
-    >
-      ₹0
-    </div>
+<div class="stat-value" id="balanceAmount">
+  ₹0
+</div>
+```
 
   </div>
 
 </section>
 
-
 <!-- PAYMENT -->
 
-<section
-  class="payment-grid"
-  id="payment"
->
+<section class="payment-grid" id="payment">
 
-
-<!-- ONLINE PAYMENT -->
+<!-- SPONSORSHIP PAYMENT -->
 
 <div class="card">
 
   <h2>
-    💳 Make a Payment
+    💳 Make a Sponsorship Payment
   </h2>
 
   <p class="card-description">
     You can pay any amount towards
     your sponsorship. You do not need
-    to pay the full remaining amount
-    at once.
+    to pay the full remaining amount at once.
   </p>
-
 
   <div class="amount-box">
 
-    <label class="amount-label">
-      Enter Payment Amount (₹)
-    </label>
+```
+<label class="amount-label">
+  Enter Payment Amount (₹)
+</label>
 
-    <input
-      type="number"
-      id="paymentAmount"
-      class="amount-input"
-      placeholder="Example: 1000"
-      min="1"
-      step="1"
-    >
+<input
+  type="number"
+  id="paymentAmount"
+  class="amount-input"
+  placeholder="Example: 1000"
+  min="1"
+  step="1"
+>
 
-    <button
-      class="pay-button"
-      id="payButton"
-    >
-      💳 Pay
-    </button>
+<button
+  class="pay-button"
+  id="payButton"
+>
+  📱 Pay via UPI
+</button>
 
-    <div class="remaining-note">
+<div class="remaining-note">
 
-      Remaining sponsorship:
-      <strong id="paymentBalance">
-        ₹0
-      </strong>
+  Remaining sponsorship:
+  <strong id="paymentBalance">
+    ₹0
+  </strong>
 
-    </div>
+</div>
+```
 
   </div>
 
 </div>
-
 
 <!-- SPECIAL DONATION -->
 
@@ -1033,89 +1014,99 @@ footer{
     Make a special donation to support
     educational, academic and welfare
     activities of the college.
+    This donation does not reduce
+    your sponsorship balance.
   </p>
 
+<input
+type="number"
+id="donationAmount"
+class="amount-input"
+placeholder="Enter donation amount"
+min="1"
+step="1"
 
-  <input
-    type="number"
-    id="donationAmount"
-    class="amount-input"
-    placeholder="Enter donation amount"
-    min="1"
-    step="1"
-  >
+>
 
+<button
+class="donate-button"
+id="donationButton"
 
-  <button
-    class="donate-button"
-    id="donationButton"
-  >
-    ❤️ Donate
+>
+
+```
+📱 Donate via UPI
+```
+
   </button>
 
 </div>
 
 </section>
 
-
 <!-- UPI / BANK -->
 
-<section
-  class="card upi-card"
-  id="bank"
->
+<section class="card upi-card" id="bank">
 
   <h2>
     📱 UPI / Bank Transfer
   </h2>
 
   <p class="card-description">
-    You can also make your payment directly
-    using UPI or bank transfer.
+    Use the QR code or UPI ID below to make
+    your payment directly from your UPI app.
   </p>
-
 
   <div class="qr-box">
 
-    <img
-      src="1000893320.jpg"
-      class="qr-image"
-      alt="UPI QR Code"
-    >
+```
+<img
+  src="1000893320.jpg"
+  class="qr-image"
+  alt="UPI QR Code"
+>
 
-    <div class="upi-id">
-      UPI: 563safa@fbl
-    </div>
+<div class="upi-id">
+  UPI: 563safa@fbl
+</div>
+
+<button
+  class="upi-pay-button"
+  id="openUpiButton"
+>
+  📱 Open UPI App
+</button>
+```
 
   </div>
 
-
   <div class="bank-box">
 
-    <div class="bank-row">
-      <span>Bank</span>
-      <strong>Federal Bank</strong>
-    </div>
+```
+<div class="bank-row">
+  <span>Bank</span>
+  <strong>Federal Bank</strong>
+</div>
 
-    <div class="bank-row">
-      <span>Account Number</span>
-      <strong>10980200318831</strong>
-    </div>
+<div class="bank-row">
+  <span>Account Number</span>
+  <strong>10980200318831</strong>
+</div>
 
-    <div class="bank-row">
-      <span>IFSC</span>
-      <strong>FDRL0001098</strong>
-    </div>
+<div class="bank-row">
+  <span>IFSC</span>
+  <strong>FDRL0001098</strong>
+</div>
 
-    <div class="bank-row">
-      <span>Branch</span>
-      <strong>Kannur Branch</strong>
-    </div>
+<div class="bank-row">
+  <span>Branch</span>
+  <strong>Kannur Branch</strong>
+</div>
+```
 
   </div>
 
 </section>
-
 
 <!-- PAYMENT VERIFICATION -->
 
@@ -1131,183 +1122,190 @@ footer{
 
   <p class="card-description">
 
-    If you paid through UPI or Bank Transfer,
-    submit the transaction details below.
-    The payment will be verified by the office.
+```
+After completing your UPI or bank transfer,
+enter the transaction details below.
+The office will verify your payment.
+```
 
   </p>
 
-
   <div class="verify-grid">
 
+```
+<div>
 
-    <div>
+  <label class="input-label">
+    Payment Type
+  </label>
 
-      <label class="input-label">
-        Payment Amount (₹)
-      </label>
+  <select
+    id="verifyType"
+    class="amount-input"
+  >
 
-      <input
-        type="number"
-        id="verifyAmount"
-        class="amount-input"
-        placeholder="Enter amount"
-        min="1"
-      >
+    <option value="sponsorship">
+      Sponsorship Payment
+    </option>
 
-    </div>
+    <option value="specialDonation">
+      Special Donation
+    </option>
 
+  </select>
 
-    <div>
+</div>
 
-      <label class="input-label">
-        Payment Date
-      </label>
+<div>
 
-      <input
-        type="date"
-        id="paymentDate"
-        class="amount-input"
-      >
+  <label class="input-label">
+    Payment Amount (₹)
+  </label>
 
-    </div>
+  <input
+    type="number"
+    id="verifyAmount"
+    class="amount-input"
+    placeholder="Enter amount"
+    min="1"
+    step="1"
+  >
 
+</div>
 
-    <div>
+<div>
 
-      <label class="input-label">
-        UTR / Transaction ID
-      </label>
+  <label class="input-label">
+    Payment Date
+  </label>
 
-      <input
-        type="text"
-        id="utrNumber"
-        class="amount-input"
-        placeholder="Enter UTR / Transaction ID"
-      >
+  <input
+    type="date"
+    id="paymentDate"
+    class="amount-input"
+  >
 
-    </div>
+</div>
 
+<div>
 
-    <div>
+  <label class="input-label">
+    UTR / Transaction ID
+  </label>
 
-      <label class="input-label">
-        Payment Method
-      </label>
+  <input
+    type="text"
+    id="utrNumber"
+    class="amount-input"
+    placeholder="Enter UTR / Transaction ID"
+  >
 
-      <select
-        id="paymentMethod"
-        class="amount-input"
-      >
+</div>
 
-        <option value="UPI">
-          UPI
-        </option>
+<div>
 
-        <option value="Bank Transfer">
-          Bank Transfer
-        </option>
+  <label class="input-label">
+    Payment Method
+  </label>
 
-      </select>
+  <select
+    id="paymentMethod"
+    class="amount-input"
+  >
 
-    </div>
+    <option value="UPI">
+      UPI
+    </option>
 
+    <option value="Bank Transfer">
+      Bank Transfer
+    </option>
 
-    <div class="full">
+  </select>
 
-      <label class="input-label">
-        Screenshot / Proof
-      </label>
+</div>
 
-      <input
-        type="file"
-        id="paymentScreenshot"
-        class="amount-input"
-        accept="image/*"
-      >
+<div class="full">
 
-      <div class="helper">
+  <label class="input-label">
+    Screenshot / Proof
+  </label>
 
-        Please keep the transaction screenshot
-        ready for verification.
+  <input
+    type="file"
+    id="paymentScreenshot"
+    class="amount-input"
+    accept="image/*"
+  >
 
-      </div>
+  <div class="helper">
 
-    </div>
+    Please keep the transaction screenshot
+    ready for verification.
 
+  </div>
 
-    <div class="full">
+</div>
 
-      <button
-        class="submit-button"
-        id="submitPayment"
-      >
-        🧾 Submit Payment for Verification
-      </button>
+<div class="full">
 
-    </div>
+  <button
+    class="submit-button"
+    id="submitPayment"
+  >
+    🧾 Submit Payment for Verification
+  </button>
+
+</div>
+```
 
   </div>
 
 </section>
 
-
 <!-- HISTORY -->
 
-<section
-  class="history"
-  id="history"
->
+<section class="history" id="history">
 
   <h2>
     📜 Payment History
   </h2>
 
-
   <div class="table-wrapper">
 
-    <table>
+```
+<table>
 
-      <thead>
+  <thead>
 
-        <tr>
+    <tr>
+      <th>Date</th>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Payment ID / UTR</th>
+      <th>Status</th>
+    </tr>
 
-          <th>Date</th>
+  </thead>
 
-          <th>Type</th>
+  <tbody id="paymentTable">
 
-          <th>Amount</th>
+    <tr>
 
-          <th>Payment ID / UTR</th>
+      <td colspan="5" class="empty">
+        No payment records found.
+      </td>
 
-          <th>Status</th>
+    </tr>
 
-        </tr>
+  </tbody>
 
-      </thead>
-
-
-      <tbody id="paymentTable">
-
-        <tr>
-
-          <td
-            colspan="5"
-            class="empty"
-          >
-            No payment records found.
-          </td>
-
-        </tr>
-
-      </tbody>
-
-    </table>
+</table>
+```
 
   </div>
 
 </section>
-
 
 <!-- ABOUT -->
 
@@ -1319,26 +1317,26 @@ footer{
 
   <p class="about-text">
 
-    Safa Hifzul Qur'an College is dedicated
-    to Qur'an education, character development
-    and nurturing students through knowledge,
-    discipline and Islamic values.
+```
+Safa Hifzul Qur'an College is dedicated
+to Qur'an education, character development
+and nurturing students through knowledge,
+discipline and Islamic values.
 
-    <br><br>
+<br><br>
 
-    Your sponsorship and generous support
-    contribute to the educational journey
-    of our students.
+Your sponsorship and generous support
+contribute to the educational journey
+of our students.
+```
 
   </p>
 
 </section>
 
-
 </main>
 
 </div>
-
 
 <!-- FOOTER -->
 
@@ -1358,7 +1356,6 @@ footer{
 
 </footer>
 
-
 <!-- FIREBASE -->
 
 <script type="module">
@@ -1369,7 +1366,6 @@ import {
 from
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-
 import {
   getAuth,
   onAuthStateChanged,
@@ -1377,7 +1373,6 @@ import {
 }
 from
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
 
 import {
   getFirestore,
@@ -1399,7 +1394,7 @@ from
 const firebaseConfig = {
 
   apiKey:
-  "AIzaSyA4GwvJ1W12dB61MknzffCAazBVN60gCOc",
+  "AIzaSyA4GwvJ1W12dB61dB61MknzffCAazBVN60gCOc",
 
   authDomain:
   "sponsors-management-port-2300e.firebaseapp.com",
@@ -1422,10 +1417,8 @@ const firebaseConfig = {
 const app =
 initializeApp(firebaseConfig);
 
-
 const auth =
 getAuth(app);
-
 
 const db =
 getFirestore(app);
@@ -1436,6 +1429,12 @@ getFirestore(app);
 let currentSponsorId = null;
 let currentBalance = 0;
 let currentSponsor = null;
+
+
+/* UPI ID */
+
+const UPI_ID = "563safa@fbl";
+const UPI_NAME = "Safa Hifzul Quran College";
 
 
 /* MONEY */
@@ -1472,6 +1471,51 @@ function showError(message){
 }
 
 
+/* OPEN UPI */
+
+function openUPI(amount, type){
+
+  const numericAmount =
+  Number(amount || 0);
+
+  if(
+    !numericAmount ||
+    numericAmount <= 0
+  ){
+
+    alert(
+      "Please enter a valid amount."
+    );
+
+    return;
+
+  }
+
+
+  const note =
+  type === "specialDonation"
+  ? "Special Donation - Safa Hifzul Quran College"
+  : "Sponsorship Payment - Safa Hifzul Quran College";
+
+
+  const upiUrl =
+  "upi://pay" +
+  "?pa=" +
+  encodeURIComponent(UPI_ID) +
+  "&pn=" +
+  encodeURIComponent(UPI_NAME) +
+  "&am=" +
+  encodeURIComponent(numericAmount.toFixed(2)) +
+  "&cu=INR" +
+  "&tn=" +
+  encodeURIComponent(note);
+
+
+  window.location.href = upiUrl;
+
+}
+
+
 /* AUTH */
 
 onAuthStateChanged(
@@ -1480,14 +1524,15 @@ async(user)=>{
 
   if(!user){
 
-    window.location.href="index.html";
+    window.location.href =
+    "index.html";
+
     return;
 
   }
 
 
   try{
-
 
     /* USER */
 
@@ -1600,7 +1645,7 @@ async(user)=>{
         currentBalance =
         Math.max(
           0,
-          total-paid
+          total - paid
         );
 
 
@@ -1611,23 +1656,25 @@ async(user)=>{
 
         document.getElementById(
           "welcomeName"
-        ).textContent=name;
+        ).textContent =
+        name;
 
 
         document.getElementById(
           "sideName"
-        ).textContent=name;
+        ).textContent =
+        name;
 
 
         document.getElementById(
           "sideSponsorId"
-        ).textContent=
+        ).textContent =
         currentSponsorId;
 
 
         document.getElementById(
           "profileInitial"
-        ).textContent=
+        ).textContent =
         name
         .trim()
         .charAt(0)
@@ -1636,31 +1683,32 @@ async(user)=>{
 
         document.getElementById(
           "totalAmount"
-        ).textContent=
+        ).textContent =
         money(total);
 
 
         document.getElementById(
           "paidAmount"
-        ).textContent=
+        ).textContent =
         money(paid);
 
 
         document.getElementById(
           "balanceAmount"
-        ).textContent=
+        ).textContent =
         money(currentBalance);
 
 
         document.getElementById(
           "paymentBalance"
-        ).textContent=
+        ).textContent =
         money(currentBalance);
 
 
         document.getElementById(
           "loading"
-        ).style.display="none";
+        ).style.display =
+        "none";
 
       },
 
@@ -1703,12 +1751,12 @@ async(user)=>{
         );
 
 
-        table.innerHTML="";
+        table.innerHTML = "";
 
 
         if(snapshot.empty){
 
-          table.innerHTML=`
+          table.innerHTML = `
 
             <tr>
 
@@ -1735,7 +1783,7 @@ async(user)=>{
             paymentDoc.data();
 
 
-            let date="-";
+            let date = "-";
 
 
             if(
@@ -1745,7 +1793,7 @@ async(user)=>{
               "function"
             ){
 
-              date=
+              date =
               payment.createdAt
               .toDate()
               .toLocaleDateString(
@@ -1771,17 +1819,23 @@ async(user)=>{
             "status-paid";
 
 
-            if(status === "Pending Verification"){
+            if(
+              status ===
+              "Pending Verification"
+            ){
 
-              statusClass=
+              statusClass =
               "status-pending";
 
             }
 
 
-            if(status === "Rejected"){
+            if(
+              status ===
+              "Rejected"
+            ){
 
-              statusClass=
+              statusClass =
               "status-rejected";
 
             }
@@ -1791,7 +1845,7 @@ async(user)=>{
             document.createElement("tr");
 
 
-            row.innerHTML=`
+            row.innerHTML = `
 
               <td>
                 ${date}
@@ -1850,7 +1904,7 @@ async(user)=>{
 });
 
 
-/* NORMAL PAY */
+/* NORMAL SPONSORSHIP PAY */
 
 document
 .getElementById("payButton")
@@ -1868,7 +1922,7 @@ document
 
   if(
     !amount ||
-    amount<=0
+    amount <= 0
   ){
 
     alert(
@@ -1894,8 +1948,47 @@ document
   }
 
 
-  alert(
-    "Razorpay online payment will be connected here."
+  /* Put same amount into verification form */
+
+  document.getElementById(
+    "verifyAmount"
+  ).value =
+  amount;
+
+
+  document.getElementById(
+    "verifyType"
+  ).value =
+  "sponsorship";
+
+
+  document.getElementById(
+    "verify"
+  ).scrollIntoView({
+    behavior:"smooth"
+  });
+
+
+  const confirmed =
+  confirm(
+    "Payment amount: " +
+    money(amount) +
+    "\n\n" +
+    "OK → Open UPI App\n" +
+    "Cancel → Stay here"
+  );
+
+
+  if(!confirmed){
+
+    return;
+
+  }
+
+
+  openUPI(
+    amount,
+    "sponsorship"
   );
 
 });
@@ -1919,7 +2012,7 @@ document
 
   if(
     !amount ||
-    amount<=0
+    amount <= 0
   ){
 
     alert(
@@ -1931,9 +2024,104 @@ document
   }
 
 
-  alert(
-    "Special Donation payment will be connected here."
+  document.getElementById(
+    "verifyAmount"
+  ).value =
+  amount;
+
+
+  document.getElementById(
+    "verifyType"
+  ).value =
+  "specialDonation";
+
+
+  document.getElementById(
+    "verify"
+  ).scrollIntoView({
+    behavior:"smooth"
+  });
+
+
+  const confirmed =
+  confirm(
+    "Special Donation: " +
+    money(amount) +
+    "\n\n" +
+    "This amount will NOT reduce your sponsorship balance.\n\n" +
+    "OK → Open UPI App\n" +
+    "Cancel → Stay here"
   );
+
+
+  if(!confirmed){
+
+    return;
+
+  }
+
+
+  openUPI(
+    amount,
+    "specialDonation"
+  );
+
+});
+
+
+/* OPEN UPI BUTTON */
+
+document
+.getElementById("openUpiButton")
+.addEventListener(
+"click",
+()=>{
+
+  const amountInput =
+  document.getElementById(
+    "paymentAmount"
+  ).value;
+
+
+  if(
+    amountInput &&
+    Number(amountInput) > 0
+  ){
+
+    if(
+      Number(amountInput) >
+      currentBalance
+    ){
+
+      alert(
+        "Amount cannot be greater than the remaining sponsorship."
+      );
+
+      return;
+
+    }
+
+
+    openUPI(
+      Number(amountInput),
+      "sponsorship"
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    "Please enter the payment amount first."
+  );
+
+
+  document.getElementById(
+    "payment"
+  ).scrollIntoView({
+    behavior:"smooth"
+  });
 
 });
 
@@ -1946,7 +2134,6 @@ document
 "click",
 async()=>{
 
-
   if(!currentSponsor){
 
     alert(
@@ -1956,6 +2143,12 @@ async()=>{
     return;
 
   }
+
+
+  const type =
+  document.getElementById(
+    "verifyType"
+  ).value;
 
 
   const amount =
@@ -1975,7 +2168,8 @@ async()=>{
   const utr =
   document.getElementById(
     "utrNumber"
-  ).value.trim();
+  ).value
+  .trim();
 
 
   const method =
@@ -1992,7 +2186,7 @@ async()=>{
 
   if(
     !amount ||
-    amount<=0
+    amount <= 0
   ){
 
     alert(
@@ -2037,9 +2231,11 @@ async()=>{
   }
 
 
+  /* Sponsorship only */
+
   if(
-    amount >
-    currentBalance
+    type === "sponsorship" &&
+    amount > currentBalance
   ){
 
     alert(
@@ -2053,15 +2249,30 @@ async()=>{
 
   try{
 
+    const submitButton =
+    document.getElementById(
+      "submitPayment"
+    );
+
+
+    submitButton.disabled =
+    true;
+
+
+    submitButton.textContent =
+    "Submitting...";
+
 
     /*
-      NOTE:
+      IMPORTANT:
 
-      Screenshot upload requires Firebase Storage.
-      For now we store the filename.
+      We DO NOT update Sponsors.paidAmount here.
 
-      Actual file upload can be added
-      using Firebase Storage.
+      Admin must verify and approve the payment.
+
+      Screenshot filename is stored for now.
+      Actual Firebase Storage upload can be
+      added separately.
     */
 
 
@@ -2097,7 +2308,7 @@ async()=>{
         screenshot.name,
 
         type:
-        "sponsorship",
+        type,
 
         status:
         "Pending Verification",
@@ -2110,28 +2321,38 @@ async()=>{
 
 
     alert(
-      "Payment details submitted successfully. The office will verify your payment."
+      "Payment details submitted successfully.\n\nThe office will verify your payment."
     );
 
 
     document.getElementById(
       "verifyAmount"
-    ).value="";
+    ).value = "";
 
 
     document.getElementById(
       "paymentDate"
-    ).value="";
+    ).value = "";
 
 
     document.getElementById(
       "utrNumber"
-    ).value="";
+    ).value = "";
 
 
     document.getElementById(
       "paymentScreenshot"
-    ).value="";
+    ).value = "";
+
+
+    document.getElementById(
+      "paymentAmount"
+    ).value = "";
+
+
+    document.getElementById(
+      "donationAmount"
+    ).value = "";
 
 
   }
@@ -2142,6 +2363,22 @@ async()=>{
     alert(
       "Unable to submit payment details."
     );
+
+  }
+  finally{
+
+    const submitButton =
+    document.getElementById(
+      "submitPayment"
+    );
+
+
+    submitButton.disabled =
+    false;
+
+
+    submitButton.textContent =
+    "🧾 Submit Payment for Verification";
 
   }
 
@@ -2158,11 +2395,10 @@ async()=>{
 
   await signOut(auth);
 
-  window.location.href=
+  window.location.href =
   "index.html";
 
 });
-
 
 </script>
 
