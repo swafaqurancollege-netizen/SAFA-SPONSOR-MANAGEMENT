@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sponsor Management - Login</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f766e, #14b8a6);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 20px;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+
+      background: white;
+
+      border-radius: 20px;
+
+      padding: 35px 28px;
+
+      box-shadow:
+        0 15px 40px rgba(0,0,0,0.20);
+    }
+
+    .logo {
+      width: 75px;
+      height: 75px;
+
+      margin: 0 auto 18px;
+
+      border-radius: 50%;
+
+      background: #0f766e;
+
+      color: white;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+
+      color: #123;
+
+      font-size: 25px;
+
+      margin-bottom: 7px;
+    }
+
+    .subtitle {
+      text-align: center;
+
+      color: #777;
+
+      font-size: 14px;
+
+      margin-bottom: 28px;
+    }
+
+    label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: #333;
+
+      font-size: 14px;
+
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+
+      padding: 13px 14px;
+
+      border: 1px solid #ddd;
+
+      border-radius: 10px;
+
+      outline: none;
+
+      font-size: 15px;
+
+      margin-bottom: 18px;
+    }
+
+    input:focus {
+      border-color: #0f766e;
+
+      box-shadow:
+        0 0 0 2px rgba(15,118,110,0.10);
+    }
+
+    button {
+      width: 100%;
+
+      padding: 14px;
+
+      border: none;
+
+      border-radius: 10px;
+
+      background: #0f766e;
+
+      color: white;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0b5f59;
+    }
+
+    button:disabled {
+      background: #9ca3af;
+
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 15px;
+
+      text-align: center;
+
+      font-size: 14px;
+
+      min-height: 20px;
+    }
+
+    .footer {
+      text-align: center;
+
+      margin-top: 25px;
+
+      color: #999;
+
+      font-size: 12px;
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <div class="login-box">
+
+
+    <div class="logo">
+      SP
+    </div>
+
+
+    <h1>
+      Sponsor Management
+    </h1>
+
+
+    <p class="subtitle">
+      Login to continue
+    </p>
+
+
+    <form id="loginForm">
+
+
+      <label for="email">
+        Email
+      </label>
+
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        autocomplete="email"
+        required
+      >
+
+
+      <label for="password">
+        Password
+      </label>
+
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter your password"
+        autocomplete="current-password"
+        required
+      >
+
+
+      <button
+        type="submit"
+        id="loginButton"
+      >
+        Login
+      </button>
+
+
+      <div
+        class="message"
+        id="message"
+      ></div>
+
+
+    </form>
+
+
+    <div class="footer">
+      Sponsor Management System
+    </div>
+
+
+  </div>
+
+
+
+  <!-- FIREBASE -->
+
+
+  <script type="module">
+
+
+    import { initializeApp }
+
+      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+    import {
+
+      getAuth,
+
+      signInWithEmailAndPassword,
+
+      signOut
+
+    }
+
+      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+    import {
+
+      getFirestore,
+
+      doc,
+
+      getDoc
+
+    }
+
+      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+
+    /* =========================
+       FIREBASE CONFIG
+    ========================= */
+
+
+    const firebaseConfig = {
+
+
+      apiKey:
+        "AIzaSyA4GwvJ1W12dB61MknzffCAazBVN60gCOc",
+
+
+      authDomain:
+        "sponsors-management-port-2300e.firebaseapp.com",
+
+
+      projectId:
+        "sponsors-management-port-2300e",
+
+
+      storageBucket:
+        "sponsors-management-port-2300e.firebasestorage.app",
+
+
+      messagingSenderId:
+        "302644033627",
+
+
+      appId:
+        "1:302644033627:web:bfb03201ee44bcf616677e"
+
+
+    };
+
+
+
+    /* =========================
+       INITIALIZE FIREBASE
+    ========================= */
+
+
+    const app =
+      initializeApp(firebaseConfig);
+
+
+    const auth =
+      getAuth(app);
+
+
+    const db =
+      getFirestore(app);
+
+
+
+    /* =========================
+       ELEMENTS
+    ========================= */
+
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+
+    const loginButton =
+      document.getElementById("loginButton");
+
+
+    const message =
+      document.getElementById("message");
+
+
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+
+    loginForm.addEventListener(
+
+      "submit",
+
+      async (event) => {
+
+
+        event.preventDefault();
+
+
+
+        const email =
+
+          document
+            .getElementById("email")
+            .value
+            .trim();
+
+
+
+        const password =
+
+          document
+            .getElementById("password")
+            .value;
+
+
+
+        if (!email || !password) {
+
+
+          message.style.color =
+            "#dc2626";
+
+
+          message.textContent =
+            "Please enter email and password.";
+
+
+          return;
+
+        }
+
+
+
+        loginButton.disabled = true;
+
+
+        loginButton.textContent =
+          "Logging in...";
+
+
+        message.textContent = "";
+
+
+
+        try {
+
+
+          /* =========================
+             FIREBASE LOGIN
+          ========================= */
+
+
+          const userCredential =
+
+            await signInWithEmailAndPassword(
+
+              auth,
+
+              email,
+
+              password
+
+            );
+
+
+
+          const user =
+            userCredential.user;
+
+
+
+          console.log(
+            "Logged in UID:",
+            user.uid
+          );
+
+
+
+          /* =========================
+             GET USER DOCUMENT
+          ========================= */
+
+
+          const userRef =
+
+            doc(
+
+              db,
+
+              "users",
+
+              user.uid
+
+            );
+
+
+
+          const userSnapshot =
+
+            await getDoc(userRef);
+
+
+
+          /* USER DOCUMENT NOT FOUND */
+
+
+          if (!userSnapshot.exists()) {
+
+
+            await signOut(auth);
+
+
+            throw new Error(
+
+              "User profile not found in Firestore."
+
+            );
+
+          }
+
+
+
+          /* =========================
+             GET ROLE
+          ========================= */
+
+
+          const userData =
+            userSnapshot.data();
+
+
+          const role =
+            userData.role;
+
+
+
+          console.log(
+            "User role:",
+            role
+          );
+
+
+
+          /* =========================
+             ADMIN LOGIN
+          ========================= */
+
+
+          if (role === "admin") {
+
+
+            message.style.color =
+              "#0f766e";
+
+
+            message.textContent =
+              "Login successful...";
+
+
+
+            setTimeout(() => {
+
+
+              window.location.href =
+                "dashboard.html";
+
+
+            }, 500);
+
+
+
+            return;
+
+          }
+
+
+
+          /* =========================
+             SPONSOR LOGIN
+          ========================= */
+
+
+          if (role === "sponsor") {
+
+
+            message.style.color =
+              "#0f766e";
+
+
+            message.textContent =
+              "Login successful...";
+
+
+
+            setTimeout(() => {
+
+
+              window.location.href =
+                "sponsor.html";
+
+
+            }, 500);
+
+
+
+            return;
+
+          }
+
+
+
+          /* =========================
+             INVALID ROLE
+          ========================= */
+
+
+          await signOut(auth);
+
+
+          throw new Error(
+
+            "Invalid user role. Please contact administrator."
+
+          );
+
+
+        }
+
+
+        catch (error) {
+
+
+          console.error(
+            "Login Error:",
+            error
+          );
+
+
+
+          message.style.color =
+            "#dc2626";
+
+
+
+          /* INVALID LOGIN */
+
+
+          if (
+
+            error.code ===
+            "auth/invalid-credential"
+
+          ) {
+
+
+            message.textContent =
+              "Invalid email or password.";
+
+
+          }
+
+
+          /* INVALID EMAIL */
+
+
+          else if (
+
+            error.code ===
+            "auth/invalid-email"
+
+          ) {
+
+
+            message.textContent =
+              "Please enter a valid email.";
+
+
+          }
+
+
+          /* DISABLED USER */
+
+
+          else if (
+
+            error.code ===
+            "auth/user-disabled"
+
+          ) {
+
+
+            message.textContent =
+              "This account has been disabled.";
+
+
+          }
+
+
+          /* TOO MANY ATTEMPTS */
+
+
+          else if (
+
+            error.code ===
+            "auth/too-many-requests"
+
+          ) {
+
+
+            message.textContent =
+              "Too many attempts. Please try again later.";
+
+
+          }
+
+
+          /* OTHER ERROR */
+
+
+          else {
+
+
+            message.textContent =
+              error.message;
+
+
+          }
+
+
+        }
+
+
+
+        loginButton.disabled = false;
+
+
+        loginButton.textContent =
+          "Login";
+
+
+      }
+
+    );
+
+
+  </script>
+
+
+</body>
+
+</html>
