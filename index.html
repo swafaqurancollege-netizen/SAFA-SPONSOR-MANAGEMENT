@@ -7,6 +7,7 @@
   <title>Sponsor Management - Login</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -36,7 +37,7 @@
       padding: 35px 28px;
 
       box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.20);
+        0 15px 40px rgba(0,0,0,0.20);
     }
 
     .logo {
@@ -111,7 +112,7 @@
       border-color: #0f766e;
 
       box-shadow:
-        0 0 0 2px rgba(15, 118, 110, 0.10);
+        0 0 0 2px rgba(15,118,110,0.10);
     }
 
     button {
@@ -152,44 +153,6 @@
       font-size: 14px;
 
       min-height: 20px;
-
-      line-height: 1.5;
-
-      word-break: break-word;
-    }
-
-    .redirect-buttons {
-      display: none;
-
-      margin-top: 15px;
-
-      gap: 10px;
-    }
-
-    .redirect-buttons button {
-      background: #2563eb;
-    }
-
-    .redirect-buttons button:last-child {
-      background: #16a34a;
-    }
-
-    .debug {
-      display: none;
-
-      margin-top: 15px;
-
-      padding: 10px;
-
-      background: #f3f4f6;
-
-      border-radius: 8px;
-
-      font-size: 12px;
-
-      color: #444;
-
-      word-break: break-word;
     }
 
     .footer {
@@ -201,20 +164,27 @@
 
       font-size: 12px;
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
   <div class="login-box">
+
 
     <div class="logo">
       SP
     </div>
 
+
     <h1>
       Sponsor Management
     </h1>
+
 
     <p class="subtitle">
       Login to continue
@@ -223,9 +193,11 @@
 
     <form id="loginForm">
 
+
       <label for="email">
         Email
       </label>
+
 
       <input
         type="email"
@@ -239,6 +211,7 @@
       <label for="password">
         Password
       </label>
+
 
       <input
         type="password"
@@ -263,33 +236,6 @@
       ></div>
 
 
-      <div
-        class="redirect-buttons"
-        id="redirectButtons"
-      >
-
-        <button
-          type="button"
-          id="sponsorButton"
-        >
-          Open Sponsor Dashboard
-        </button>
-
-        <button
-          type="button"
-          id="adminButton"
-        >
-          Open Admin Dashboard
-        </button>
-
-      </div>
-
-
-      <div
-        class="debug"
-        id="debug"
-      ></div>
-
     </form>
 
 
@@ -297,309 +243,264 @@
       Sponsor Management System
     </div>
 
+
   </div>
 
 
-  <!-- =====================================================
-       FIREBASE
-       ===================================================== -->
+
+  <!-- FIREBASE -->
+
 
   <script type="module">
 
+
     import { initializeApp }
+
       from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-    import {
-      getAuth,
-      signInWithEmailAndPassword,
-      signOut
-    }
-      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
     import {
-      getFirestore,
-      doc,
-      getDoc
+
+      getAuth,
+
+      signInWithEmailAndPassword,
+
+      signOut
+
     }
+
+      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+    import {
+
+      getFirestore,
+
+      doc,
+
+      getDoc
+
+    }
+
       from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-    // =====================================================
-    // CURRENT FIREBASE CONFIG
-    // =====================================================
+
+    /* =========================
+       FIREBASE CONFIG
+    ========================= */
+
 
     const firebaseConfig = {
 
+
       apiKey:
-        "AIzaSyCQfWt8YCC7c2vbyiUEUHERCFLnvKYf0_Q",
+        "AIzaSyA4GwvJ1W12dB61MknzffCAazBVN60gCOc",
+
 
       authDomain:
-        "safa-sponsor-management.firebaseapp.com",
+        "sponsors-management-port-2300e.firebaseapp.com",
+
 
       projectId:
-        "safa-sponsor-management",
+        "sponsors-management-port-2300e",
+
 
       storageBucket:
-        "safa-sponsor-management.firebasestorage.app",
+        "sponsors-management-port-2300e.firebasestorage.app",
+
 
       messagingSenderId:
-        "580781673057",
+        "302644033627",
+
 
       appId:
-        "1:580781673057:web:e8601de35c6e2678f8b820"
+        "1:302644033627:web:bfb03201ee44bcf616677e"
+
 
     };
 
 
-    // =====================================================
-    // INITIALIZE
-    // =====================================================
+
+    /* =========================
+       INITIALIZE FIREBASE
+    ========================= */
+
 
     const app =
       initializeApp(firebaseConfig);
 
+
     const auth =
       getAuth(app);
+
 
     const db =
       getFirestore(app);
 
 
-    // =====================================================
-    // ELEMENTS
-    // =====================================================
+
+    /* =========================
+       ELEMENTS
+    ========================= */
+
 
     const loginForm =
       document.getElementById("loginForm");
 
+
     const loginButton =
       document.getElementById("loginButton");
+
 
     const message =
       document.getElementById("message");
 
-    const debug =
-      document.getElementById("debug");
-
-    const redirectButtons =
-      document.getElementById("redirectButtons");
-
-    const sponsorButton =
-      document.getElementById("sponsorButton");
-
-    const adminButton =
-      document.getElementById("adminButton");
 
 
-    // =====================================================
-    // HELPER
-    // =====================================================
+    /* =========================
+       LOGIN
+    ========================= */
 
-    function showMessage(text, color = "#333") {
-
-      message.style.color = color;
-
-      message.textContent = text;
-
-    }
-
-
-    function showDebug(text) {
-
-      debug.style.display = "block";
-
-      debug.textContent = text;
-
-    }
-
-
-    function hideRedirectButtons() {
-
-      redirectButtons.style.display = "none";
-
-    }
-
-
-    function showRedirectButtons() {
-
-      redirectButtons.style.display = "flex";
-
-      redirectButtons.style.flexDirection = "column";
-
-    }
-
-
-    // =====================================================
-    // DIRECT BUTTONS
-    // =====================================================
-
-    sponsorButton.addEventListener(
-      "click",
-      () => {
-
-        window.location.replace(
-          "./sponsor.html"
-        );
-
-      }
-    );
-
-
-    adminButton.addEventListener(
-      "click",
-      () => {
-
-        window.location.replace(
-          "./dashboard.html"
-        );
-
-      }
-    );
-
-
-    // =====================================================
-    // LOGIN
-    // =====================================================
 
     loginForm.addEventListener(
+
       "submit",
+
       async (event) => {
+
 
         event.preventDefault();
 
 
-        hideRedirectButtons();
-
 
         const email =
+
           document
             .getElementById("email")
             .value
             .trim();
 
 
+
         const password =
+
           document
             .getElementById("password")
             .value;
 
 
+
         if (!email || !password) {
 
-          showMessage(
-            "Please enter email and password.",
-            "#dc2626"
-          );
+
+          message.style.color =
+            "#dc2626";
+
+
+          message.textContent =
+            "Please enter email and password.";
+
 
           return;
 
         }
 
 
+
         loginButton.disabled = true;
+
 
         loginButton.textContent =
           "Logging in...";
 
-        showMessage(
-          "Please wait...",
-          "#0f766e"
-        );
 
+        message.textContent = "";
 
-        debug.style.display = "none";
 
 
         try {
 
-          // =================================================
-          // FIREBASE AUTH LOGIN
-          // =================================================
+
+          /* =========================
+             FIREBASE LOGIN
+          ========================= */
+
 
           const userCredential =
+
             await signInWithEmailAndPassword(
+
               auth,
+
               email,
+
               password
+
             );
+
 
 
           const user =
             userCredential.user;
 
 
-          console.log(
-            "LOGIN SUCCESS"
-          );
 
           console.log(
-            "UID:",
+            "Logged in UID:",
             user.uid
           );
 
-          console.log(
-            "EMAIL:",
-            user.email
-          );
 
 
-          // =================================================
-          // GET USERS DOCUMENT
-          // =================================================
-
-          showMessage(
-            "Login successful. Checking account...",
-            "#0f766e"
-          );
+          /* =========================
+             GET USER DOCUMENT
+          ========================= */
 
 
           const userRef =
+
             doc(
+
               db,
+
               "users",
+
               user.uid
+
             );
 
 
+
           const userSnapshot =
+
             await getDoc(userRef);
 
 
-          // =================================================
-          // DOCUMENT NOT FOUND
-          // =================================================
+
+          /* USER DOCUMENT NOT FOUND */
+
 
           if (!userSnapshot.exists()) {
+
 
             await signOut(auth);
 
 
-            showMessage(
-              "User profile not found.",
-              "#dc2626"
+            throw new Error(
+
+              "User profile not found in Firestore."
+
             );
-
-
-            showDebug(
-              "Firebase Auth login succeeded, but Firestore document users/" +
-              user.uid +
-              " was not found."
-            );
-
-
-            loginButton.disabled = false;
-
-            loginButton.textContent =
-              "Login";
-
-            return;
 
           }
 
 
-          // =================================================
-          // USER DATA
-          // =================================================
+
+          /* =========================
+             GET ROLE
+          ========================= */
+
 
           const userData =
             userSnapshot.data();
@@ -609,51 +510,40 @@
             userData.role;
 
 
-          const sponsorId =
-            userData.sponsorId || "";
-
 
           console.log(
-            "USER DATA:",
-            userData
-          );
-
-          console.log(
-            "ROLE:",
+            "User role:",
             role
           );
 
-          console.log(
-            "SPONSOR ID:",
-            sponsorId
-          );
 
 
-          // =================================================
-          // ADMIN
-          // =================================================
+          /* =========================
+             ADMIN LOGIN
+          ========================= */
+
 
           if (role === "admin") {
 
-            showMessage(
-              "Admin login successful.",
-              "#0f766e"
-            );
+
+            message.style.color =
+              "#0f766e";
 
 
-            showDebug(
-              "Role detected: ADMIN"
-            );
+            message.textContent =
+              "Login successful...";
 
 
-            /*
-              Direct redirect.
-              No setTimeout.
-            */
 
-            window.location.replace(
-              "./dashboard.html"
-            );
+            setTimeout(() => {
+
+
+              window.location.href =
+                "dashboard.html";
+
+
+            }, 500);
+
 
 
             return;
@@ -661,34 +551,33 @@
           }
 
 
-          // =================================================
-          // SPONSOR
-          // =================================================
+
+          /* =========================
+             SPONSOR LOGIN
+          ========================= */
+
 
           if (role === "sponsor") {
 
-            showMessage(
-              "Sponsor login successful.",
-              "#0f766e"
-            );
+
+            message.style.color =
+              "#0f766e";
 
 
-            showDebug(
-              "Role detected: SPONSOR" +
-              (sponsorId
-                ? " | Sponsor ID: " + sponsorId
-                : "")
-            );
+            message.textContent =
+              "Login successful...";
 
 
-            /*
-              Direct redirect.
-              No setTimeout.
-            */
 
-            window.location.replace(
-              "./sponsor.html"
-            );
+            setTimeout(() => {
+
+
+              window.location.href =
+                "sponsor.html";
+
+
+            }, 500);
+
 
 
             return;
@@ -696,169 +585,144 @@
           }
 
 
-          // =================================================
-          // INVALID ROLE
-          // =================================================
+
+          /* =========================
+             INVALID ROLE
+          ========================= */
+
 
           await signOut(auth);
 
 
-          showMessage(
-            "Invalid user role.",
-            "#dc2626"
+          throw new Error(
+
+            "Invalid user role. Please contact administrator."
+
           );
 
-
-          showDebug(
-            "The users document exists, but the role is: " +
-            String(role)
-          );
-
-
-          loginButton.disabled = false;
-
-          loginButton.textContent =
-            "Login";
 
         }
 
 
         catch (error) {
 
+
           console.error(
-            "LOGIN ERROR:",
+            "Login Error:",
             error
           );
 
 
-          console.error(
-            "ERROR CODE:",
-            error.code
-          );
+
+          message.style.color =
+            "#dc2626";
 
 
-          console.error(
-            "ERROR MESSAGE:",
-            error.message
-          );
 
+          /* INVALID LOGIN */
 
-          // =================================================
-          // AUTH ERRORS
-          // =================================================
 
           if (
+
             error.code ===
             "auth/invalid-credential"
+
           ) {
 
-            showMessage(
-              "Invalid email or password.",
-              "#dc2626"
-            );
+
+            message.textContent =
+              "Invalid email or password.";
+
 
           }
 
 
+          /* INVALID EMAIL */
+
+
           else if (
+
             error.code ===
             "auth/invalid-email"
+
           ) {
 
-            showMessage(
-              "Please enter a valid email.",
-              "#dc2626"
-            );
+
+            message.textContent =
+              "Please enter a valid email.";
+
 
           }
 
 
+          /* DISABLED USER */
+
+
           else if (
+
             error.code ===
             "auth/user-disabled"
+
           ) {
 
-            showMessage(
-              "This account has been disabled.",
-              "#dc2626"
-            );
+
+            message.textContent =
+              "This account has been disabled.";
+
 
           }
 
 
+          /* TOO MANY ATTEMPTS */
+
+
           else if (
+
             error.code ===
             "auth/too-many-requests"
+
           ) {
 
-            showMessage(
-              "Too many attempts. Please try again later.",
-              "#dc2626"
-            );
+
+            message.textContent =
+              "Too many attempts. Please try again later.";
+
 
           }
 
 
-          // =================================================
-          // FIRESTORE PERMISSION
-          // =================================================
+          /* OTHER ERROR */
 
-          else if (
-            error.code ===
-            "permission-denied"
-          ) {
-
-            showMessage(
-              "Firestore permission denied.",
-              "#dc2626"
-            );
-
-
-            showDebug(
-              "Firebase Auth login worked, but Firestore denied access to users/" +
-              (auth.currentUser
-                ? auth.currentUser.uid
-                : "")
-            );
-
-          }
-
-
-          // =================================================
-          // OTHER ERROR
-          // =================================================
 
           else {
 
-            showMessage(
-              error.message ||
-              "Login failed. Please try again.",
-              "#dc2626"
-            );
 
+            message.textContent =
+              error.message;
 
-            showDebug(
-              "Error code: " +
-              (error.code || "unknown") +
-              " | " +
-              "Error: " +
-              (error.message || "unknown error")
-            );
 
           }
+
 
         }
 
 
+
         loginButton.disabled = false;
+
 
         loginButton.textContent =
           "Login";
 
+
       }
+
     );
+
 
   </script>
 
+
 </body>
+
 </html>
