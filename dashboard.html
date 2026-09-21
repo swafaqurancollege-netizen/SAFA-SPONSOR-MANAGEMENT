@@ -1,0 +1,3082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Safa Sponsor Management Portal</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#f3f7f6;
+    color:#17252b;
+}
+
+
+/* ================= HEADER ================= */
+
+.header{
+    position:relative;
+    min-height:430px;
+    overflow:hidden;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.header-image{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+}
+
+.header-overlay{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(2,45,38,.88),
+            rgba(0,0,0,.42)
+        );
+}
+
+.header-content{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:1000px;
+    padding:40px 20px;
+}
+
+.greeting{
+    font-size:18px;
+    font-weight:600;
+    letter-spacing:.5px;
+    margin-bottom:14px;
+}
+
+.logo-circle{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    margin:0 auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.5);
+    font-size:32px;
+}
+
+.header h1{
+    font-size:32px;
+    line-height:1.2;
+    margin-bottom:8px;
+}
+
+.header-sub{
+    font-size:14px;
+    opacity:.9;
+    margin-bottom:18px;
+}
+
+.quote{
+    font-family:Amiri,serif;
+    font-size:28px;
+    font-weight:700;
+    direction:rtl;
+    margin:10px auto 8px;
+}
+
+.quote-meaning{
+    font-size:13px;
+    opacity:.9;
+}
+
+
+/* ================= SEARCH BAR ================= */
+
+.topbar{
+    max-width:1200px;
+    margin:-35px auto 25px;
+    position:relative;
+    z-index:5;
+    padding:0 18px;
+}
+
+.topbar-inner{
+    background:white;
+    border-radius:18px;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+    padding:15px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.search{
+    flex:1;
+    position:relative;
+}
+
+.search input{
+    width:100%;
+    border:1px solid #d8e1df;
+    border-radius:12px;
+    padding:14px 16px 14px 45px;
+    font-size:15px;
+    outline:none;
+}
+
+.search input:focus{
+    border-color:#168275;
+}
+
+.search-icon{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:19px;
+}
+
+.logout{
+    border:0;
+    background:#a33b3b;
+    color:white;
+    padding:13px 18px;
+    border-radius:11px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.logout:hover{
+    background:#8f3030;
+}
+
+
+/* ================= MAIN ================= */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:0 18px 50px;
+}
+
+
+/* ================= STATISTICS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+    margin-bottom:28px;
+}
+
+.stat{
+    background:white;
+    padding:22px;
+    border-radius:17px;
+    box-shadow:0 6px 22px rgba(0,0,0,.06);
+    border-left:5px solid #08796e;
+}
+
+.stat.pending-review{
+    border-left-color:#e09b24;
+}
+
+.stat-title{
+    font-size:13px;
+    color:#718087;
+    margin-bottom:10px;
+}
+
+.stat-value{
+    font-size:25px;
+    font-weight:800;
+    color:#17252b;
+}
+
+
+/* ================= ISLAMIC HELPING CARDS ================= */
+
+.help-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:28px;
+}
+
+.help-card{
+    background:white;
+    border-radius:17px;
+    padding:20px;
+    box-shadow:0 6px 20px rgba(0,0,0,.06);
+    transition:.2s;
+}
+
+.help-card:hover{
+    transform:translateY(-3px);
+}
+
+.help-icon{
+    font-size:27px;
+    margin-bottom:10px;
+}
+
+.help-card h3{
+    font-size:15px;
+    margin-bottom:7px;
+}
+
+.help-card p{
+    color:#718087;
+    font-size:12px;
+    line-height:1.5;
+}
+
+
+/* ================= CARD ================= */
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:26px;
+    box-shadow:0 6px 25px rgba(0,0,0,.06);
+    margin-bottom:25px;
+}
+
+.card h2{
+    font-size:21px;
+    margin-bottom:20px;
+}
+
+
+/* ================= NOTICE ================= */
+
+.notice{
+    background:#ecfaf5;
+    border:1px solid #bde8d8;
+    color:#176b5c;
+    border-radius:13px;
+    padding:15px;
+    margin-bottom:20px;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.notice.warning{
+    background:#fff8e8;
+    border-color:#f0d99a;
+    color:#856316;
+}
+
+
+/* ================= FORM ================= */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:17px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.field label{
+    font-weight:700;
+    font-size:14px;
+}
+
+.field input{
+    padding:14px;
+    border:1px solid #d5dddb;
+    border-radius:11px;
+    outline:none;
+    font-size:15px;
+}
+
+.field input:focus{
+    border-color:#08796e;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.primary{
+    border:0;
+    background:#08796e;
+    color:white;
+    padding:14px 23px;
+    border-radius:11px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.primary:hover{
+    background:#06675e;
+}
+
+.message{
+    margin-top:15px;
+    font-weight:600;
+    font-size:14px;
+}
+
+
+/* ================= TABLE ================= */
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:850px;
+}
+
+th{
+    background:#f5f8f7;
+    text-align:left;
+    padding:15px;
+    font-size:13px;
+    color:#4c5b61;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #e8eeee;
+    font-size:14px;
+}
+
+.sponsor-id{
+    color:#08796e;
+    font-weight:800;
+}
+
+.status{
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:700;
+    display:inline-block;
+}
+
+.status.paid{
+    background:#e4f7ed;
+    color:#147047;
+}
+
+.status.pending{
+    background:#fff4df;
+    color:#9b6815;
+}
+
+.status.review{
+    background:#fff1d6;
+    color:#a56700;
+}
+
+.status.rejected{
+    background:#fde9e9;
+    color:#a83232;
+}
+
+.action-btn{
+    border:0;
+    padding:7px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    margin-right:4px;
+    margin-bottom:4px;
+}
+
+.edit{
+    background:#e7f1ff;
+    color:#1763a5;
+}
+
+.delete{
+    background:#fde9e9;
+    color:#a83232;
+}
+
+.approve{
+    background:#e4f7ed;
+    color:#147047;
+}
+
+.reject{
+    background:#fde9e9;
+    color:#a83232;
+}
+
+.empty{
+    text-align:center;
+    padding:35px;
+    color:#8b979c;
+}
+
+
+/* ================= PAYMENT REQUEST ================= */
+
+.payment-request-card{
+    border:1px solid #e5ecea;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:15px;
+    background:#fcfefd;
+}
+
+.payment-request-card:last-child{
+    margin-bottom:0;
+}
+
+.payment-request-header{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.payment-request-title{
+    font-size:16px;
+    font-weight:800;
+}
+
+.payment-request-amount{
+    font-size:20px;
+    font-weight:800;
+    color:#08796e;
+}
+
+.payment-details{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:15px;
+}
+
+.payment-detail{
+    background:#f5f8f7;
+    padding:11px;
+    border-radius:10px;
+}
+
+.payment-detail-label{
+    font-size:11px;
+    color:#7a878b;
+    margin-bottom:5px;
+}
+
+.payment-detail-value{
+    font-size:13px;
+    font-weight:700;
+    word-break:break-word;
+}
+
+.payment-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer{
+    text-align:center;
+    color:#77858a;
+    font-size:12px;
+    padding:25px 10px;
+}
+
+.arabic-footer{
+    font-family:Amiri,serif;
+    font-size:20px;
+    direction:rtl;
+    color:#08796e;
+    margin-bottom:8px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px){
+
+    .stats{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .payment-details{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:850px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .help-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .header{
+        min-height:390px;
+    }
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .quote{
+        font-size:23px;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .header{
+        min-height:370px;
+    }
+
+    .header-content{
+        padding:30px 15px;
+    }
+
+    .header h1{
+        font-size:22px;
+    }
+
+    .greeting{
+        font-size:16px;
+    }
+
+    .quote{
+        font-size:21px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .help-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .topbar-inner{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .logout{
+        width:100%;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .payment-details{
+        grid-template-columns:1fr;
+    }
+
+    .payment-request-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <img
+        src="1000892841.jpg"
+        class="header-image"
+        alt="Safa Hifzul Qur'an College"
+    >
+
+    <div class="header-overlay"></div>
+
+    <div class="header-content">
+
+        <div class="logo-circle">
+            ☪
+        </div>
+
+        <div class="greeting">
+            السلام عليكم ورحمة الله وبركاته
+        </div>
+
+        <h1>
+            SAFA HIFZUL QUR'AN COLLEGE
+        </h1>
+
+        <div class="header-sub">
+            SPONSOR MANAGEMENT PORTAL
+        </div>
+
+        <div class="quote">
+            خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ
+        </div>
+
+        <div class="quote-meaning">
+            The best among you are those who learn the Qur'an and teach it.
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= SEARCH ================= -->
+
+<div class="topbar">
+
+    <div class="topbar-inner">
+
+        <div class="search">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search sponsor by ID, name or phone..."
+            >
+
+        </div>
+
+        <button
+            class="logout"
+            id="logoutBtn"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <section class="stats">
+
+        <div class="stat">
+
+            <div class="stat-title">
+                TOTAL SPONSORS
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalSponsors"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                TOTAL SPONSORSHIP
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalAmount"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                TOTAL PAID
+            </div>
+
+            <div
+                class="stat-value"
+                id="paidAmount"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                TOTAL PENDING
+            </div>
+
+            <div
+                class="stat-value"
+                id="pendingAmount"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="stat pending-review">
+
+            <div class="stat-title">
+                PAYMENT VERIFICATION
+            </div>
+
+            <div
+                class="stat-value"
+                id="pendingVerification"
+            >
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= ISLAMIC HELPING CARDS ================= -->
+
+    <section class="help-grid">
+
+        <div class="help-card">
+
+            <div class="help-icon">
+                📖
+            </div>
+
+            <h3>
+                Qur'an Education
+            </h3>
+
+            <p>
+                Supporting Qur'an memorization and Islamic education.
+            </p>
+
+        </div>
+
+
+        <div class="help-card">
+
+            <div class="help-icon">
+                🤝
+            </div>
+
+            <h3>
+                Sponsor Support
+            </h3>
+
+            <p>
+                Manage sponsorship commitments and supporter information.
+            </p>
+
+        </div>
+
+
+        <div class="help-card">
+
+            <div class="help-icon">
+                💳
+            </div>
+
+            <h3>
+                Payments
+            </h3>
+
+            <p>
+                Track received amounts and remaining sponsorship balances.
+            </p>
+
+        </div>
+
+
+        <div class="help-card">
+
+            <div class="help-icon">
+                🌙
+            </div>
+
+            <h3>
+                Islamic Service
+            </h3>
+
+            <p>
+                Together supporting a meaningful Qur'anic mission.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= ADD SPONSOR ================= -->
+
+    <section class="card">
+
+        <h2>
+            ➕ Add New Sponsor
+        </h2>
+
+        <div class="notice">
+
+            <strong>
+                Sponsor ID will be generated automatically.
+            </strong>
+
+            <br>
+
+            Example:
+            <strong>
+                SP-1001, SP-1002, SP-1003...
+            </strong>
+
+        </div>
+
+
+        <form id="sponsorForm">
+
+            <div class="form-grid">
+
+                <div class="field">
+
+                    <label>
+                        Sponsor Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter sponsor name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter email"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Total Sponsorship Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="totalAmountInput"
+                        placeholder="Enter amount"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Initial Paid Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="paidAmountInput"
+                        value="0"
+                        min="0"
+                    >
+
+                </div>
+
+
+                <div class="field full">
+
+                    <button
+                        type="submit"
+                        class="primary"
+                    >
+                        Add Sponsor
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+    </section>
+
+
+
+    <!-- ================= PAYMENT VERIFICATION ================= -->
+
+    <section class="card">
+
+        <h2>
+            💳 Payment Verification
+        </h2>
+
+
+        <div class="notice warning">
+
+            <strong>
+                Manual Payment Verification
+            </strong>
+
+            <br>
+
+            Sponsors who submit UPI / Bank Transfer payments will appear here.
+            Verify the UTR and amount before approving the payment.
+
+        </div>
+
+
+        <div id="paymentRequestsContainer">
+
+            <div class="empty">
+                Loading payment requests...
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= SPONSOR LIST ================= -->
+
+    <section class="card">
+
+        <h2>
+            👥 Sponsors
+        </h2>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Sponsor ID
+                        </th>
+
+                        <th>
+                            Sponsor
+                        </th>
+
+                        <th>
+                            Phone
+                        </th>
+
+                        <th>
+                            Total
+                        </th>
+
+                        <th>
+                            Paid
+                        </th>
+
+                        <th>
+                            Pending
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="sponsorTable">
+
+                    <tr>
+
+                        <td
+                            colspan="8"
+                            class="empty"
+                        >
+                            Loading sponsors...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="arabic-footer">
+            وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ
+        </div>
+
+        <div>
+            Safa Hifzul Qur'an College
+        </div>
+
+        <div>
+            Sponsor Management Portal
+        </div>
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    addDoc,
+    deleteDoc,
+    updateDoc,
+    onSnapshot,
+    serverTimestamp,
+    runTransaction
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+
+/* ================= FIREBASE CONFIG ================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyA4GwvJ1W12dB61MknzffCAazBVN60gCOc",
+
+    authDomain:
+        "sponsors-management-port-2300e.firebaseapp.com",
+
+    projectId:
+        "sponsors-management-port-2300e",
+
+    storageBucket:
+        "sponsors-management-port-2300e.firebasestorage.app",
+
+    messagingSenderId:
+        "302644033627",
+
+    appId:
+        "1:302644033627:web:bfb03201ee44bcf616677e"
+
+};
+
+
+
+/* ================= INITIALIZE ================= */
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+
+/* ================= ELEMENTS ================= */
+
+const form =
+    document.getElementById(
+        "sponsorForm"
+    );
+
+const table =
+    document.getElementById(
+        "sponsorTable"
+    );
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const logoutBtn =
+    document.getElementById(
+        "logoutBtn"
+    );
+
+const paymentRequestsContainer =
+    document.getElementById(
+        "paymentRequestsContainer"
+    );
+
+
+let allSponsors = [];
+
+let allPaymentRequests = [];
+
+let currentAdmin = null;
+
+
+
+/* ================= ADMIN CHECK ================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if (!user) {
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        try {
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const userSnap =
+                await getDoc(
+                    userRef
+                );
+
+
+            if (
+                !userSnap.exists() ||
+                userSnap.data().role !== "admin"
+            ) {
+
+                await signOut(auth);
+
+                window.location.href =
+                    "index.html";
+
+                return;
+
+            }
+
+
+            currentAdmin = user;
+
+
+            startSponsorListener();
+
+            startPaymentRequestListener();
+
+
+        }
+        catch(error) {
+
+            console.error(error);
+
+            table.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="8"
+                        class="empty"
+                    >
+                        Unable to verify admin account.
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    }
+);
+
+
+
+/* ================= GENERATE SPONSOR ID ================= */
+
+async function generateSponsorId(){
+
+    const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "Sponsors"
+            )
+        );
+
+
+    let maxNumber = 1000;
+
+
+    snapshot.forEach(
+        (item) => {
+
+            const data =
+                item.data();
+
+            const id =
+                String(
+                    data.sponsorId || ""
+                );
+
+
+            if (
+                id.startsWith("SP-")
+            ){
+
+                const number =
+                    parseInt(
+                        id.replace(
+                            "SP-",
+                            ""
+                        ),
+                        10
+                    );
+
+
+                if(
+                    !isNaN(number) &&
+                    number > maxNumber
+                ){
+
+                    maxNumber =
+                        number;
+
+                }
+
+            }
+
+        }
+    );
+
+
+    return (
+        "SP-" +
+        (maxNumber + 1)
+    );
+
+}
+
+
+
+/* ================= ADD SPONSOR ================= */
+
+form.addEventListener(
+    "submit",
+    async (event) => {
+
+        event.preventDefault();
+
+        message.textContent = "";
+
+
+        const name =
+            document.getElementById(
+                "name"
+            ).value.trim();
+
+
+        const phone =
+            document.getElementById(
+                "phone"
+            ).value.trim();
+
+
+        const email =
+            document.getElementById(
+                "email"
+            ).value.trim();
+
+
+        const total =
+            Number(
+                document.getElementById(
+                    "totalAmountInput"
+                ).value
+            );
+
+
+        const paid =
+            Number(
+                document.getElementById(
+                    "paidAmountInput"
+                ).value || 0
+            );
+
+
+        if(total <= 0){
+
+            message.textContent =
+                "Please enter a valid total amount.";
+
+            message.style.color =
+                "#a83232";
+
+            return;
+
+        }
+
+
+        if(
+            paid < 0 ||
+            paid > total
+        ){
+
+            message.textContent =
+                "Paid amount cannot be greater than total amount.";
+
+            message.style.color =
+                "#a83232";
+
+            return;
+
+        }
+
+
+        try{
+
+            const sponsorId =
+                await generateSponsorId();
+
+
+            const balance =
+                total - paid;
+
+
+            const status =
+                balance <= 0
+                    ? "paid"
+                    : "pending";
+
+
+            await addDoc(
+                collection(
+                    db,
+                    "Sponsors"
+                ),
+                {
+
+                    sponsorId:
+                        sponsorId,
+
+                    name:
+                        name,
+
+                    phone:
+                        phone,
+
+                    email:
+                        email,
+
+                    totalAmount:
+                        total,
+
+                    paidAmount:
+                        paid,
+
+                    balanceAmount:
+                        balance,
+
+                    status:
+                        status,
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            message.textContent =
+                "Sponsor added successfully. Sponsor ID: " +
+                sponsorId;
+
+
+            message.style.color =
+                "#08796e";
+
+
+            form.reset();
+
+
+            document.getElementById(
+                "paidAmountInput"
+            ).value = "0";
+
+        }
+        catch(error){
+
+            console.error(error);
+
+            message.textContent =
+                "Unable to add sponsor: " +
+                error.message;
+
+            message.style.color =
+                "#a83232";
+
+        }
+
+    }
+);
+
+
+
+/* ================= SPONSOR REAL TIME LISTENER ================= */
+
+function startSponsorListener(){
+
+    const sponsorsRef =
+        collection(
+            db,
+            "Sponsors"
+        );
+
+
+    onSnapshot(
+        sponsorsRef,
+        (snapshot) => {
+
+            allSponsors = [];
+
+
+            snapshot.forEach(
+                (item) => {
+
+                    allSponsors.push({
+
+                        id:
+                            item.id,
+
+                        ...item.data()
+
+                    });
+
+                }
+            );
+
+
+            updateStatistics();
+
+            renderSponsors(
+                allSponsors
+            );
+
+        },
+        (error) => {
+
+            console.error(error);
+
+
+            table.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="8"
+                        class="empty"
+                    >
+                        Unable to load sponsors.
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+}
+
+
+
+/* ================= PAYMENT REQUEST LISTENER ================= */
+
+function startPaymentRequestListener(){
+
+    const requestsRef =
+        collection(
+            db,
+            "PaymentRequests"
+        );
+
+
+    onSnapshot(
+        requestsRef,
+        (snapshot) => {
+
+            allPaymentRequests = [];
+
+
+            snapshot.forEach(
+                (item) => {
+
+                    allPaymentRequests.push({
+
+                        id:
+                            item.id,
+
+                        ...item.data()
+
+                    });
+
+                }
+            );
+
+
+            updateVerificationCount();
+
+            renderPaymentRequests();
+
+        },
+        (error) => {
+
+            console.error(
+                "Payment request error:",
+                error
+            );
+
+
+            paymentRequestsContainer.innerHTML = `
+
+                <div class="empty">
+
+                    Unable to load payment requests.
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+
+/* ================= STATISTICS ================= */
+
+function updateStatistics(){
+
+    let total = 0;
+
+    let paid = 0;
+
+    let pending = 0;
+
+
+    allSponsors.forEach(
+        (sponsor) => {
+
+            total +=
+                Number(
+                    sponsor.totalAmount || 0
+                );
+
+
+            paid +=
+                Number(
+                    sponsor.paidAmount || 0
+                );
+
+
+            pending +=
+                Number(
+                    sponsor.balanceAmount ??
+                    (
+                        Number(
+                            sponsor.totalAmount || 0
+                        )
+                        -
+                        Number(
+                            sponsor.paidAmount || 0
+                        )
+                    )
+                );
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalSponsors"
+    ).textContent =
+        allSponsors.length;
+
+
+    document.getElementById(
+        "totalAmount"
+    ).textContent =
+        formatMoney(total);
+
+
+    document.getElementById(
+        "paidAmount"
+    ).textContent =
+        formatMoney(paid);
+
+
+    document.getElementById(
+        "pendingAmount"
+    ).textContent =
+        formatMoney(pending);
+
+
+    updateVerificationCount();
+
+}
+
+
+
+/* ================= VERIFICATION COUNT ================= */
+
+function updateVerificationCount(){
+
+    const pendingCount =
+        allPaymentRequests.filter(
+            request =>
+                String(
+                    request.status || ""
+                ).toLowerCase()
+                ===
+                "pending verification"
+        ).length;
+
+
+    document.getElementById(
+        "pendingVerification"
+    ).textContent =
+        pendingCount;
+
+}
+
+
+
+/* ================= MONEY ================= */
+
+function formatMoney(amount){
+
+    return (
+        "₹" +
+        Number(
+            amount || 0
+        ).toLocaleString(
+            "en-IN"
+        )
+    );
+
+}
+
+
+
+/* ================= DATE ================= */
+
+function formatDate(value){
+
+    if(!value)
+        return "-";
+
+
+    try{
+
+        if(
+            typeof value.toDate ===
+            "function"
+        ){
+
+            return value
+                .toDate()
+                .toLocaleDateString(
+                    "en-IN"
+                );
+
+        }
+
+
+        const date =
+            new Date(value);
+
+
+        if(
+            isNaN(
+                date.getTime()
+            )
+        ){
+
+            return String(value);
+
+        }
+
+
+        return date.toLocaleDateString(
+            "en-IN"
+        );
+
+    }
+    catch(error){
+
+        return "-";
+
+    }
+
+}
+
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+
+/* ================= PAYMENT REQUEST RENDER ================= */
+
+function renderPaymentRequests(){
+
+    const pendingRequests =
+        allPaymentRequests
+        .filter(
+            request =>
+                String(
+                    request.status || ""
+                ).toLowerCase()
+                ===
+                "pending verification"
+        )
+        .sort(
+            (a,b) => {
+
+                const aTime =
+                    a.createdAt?.seconds || 0;
+
+                const bTime =
+                    b.createdAt?.seconds || 0;
+
+                return bTime - aTime;
+
+            }
+        );
+
+
+    if(
+        !pendingRequests.length
+    ){
+
+        paymentRequestsContainer.innerHTML = `
+
+            <div class="empty">
+
+                🎉 No pending payment verification.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    paymentRequestsContainer.innerHTML =
+        pendingRequests
+        .map(
+            (request) => {
+
+                const amount =
+                    Number(
+                        request.amount || 0
+                    );
+
+
+                return `
+
+                    <div
+                        class="payment-request-card"
+                    >
+
+                        <div
+                            class="payment-request-header"
+                        >
+
+                            <div>
+
+                                <div
+                                    class="payment-request-title"
+                                >
+
+                                    ${escapeHTML(
+                                        request.sponsorName ||
+                                        "Sponsor"
+                                    )}
+
+                                </div>
+
+                                <small>
+
+                                    Sponsor ID:
+                                    <strong>
+                                        ${escapeHTML(
+                                            request.sponsorId ||
+                                            "-"
+                                        )}
+                                    </strong>
+
+                                </small>
+
+                            </div>
+
+
+                            <div
+                                class="payment-request-amount"
+                            >
+
+                                ${formatMoney(
+                                    amount
+                                )}
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="payment-details"
+                        >
+
+                            <div
+                                class="payment-detail"
+                            >
+
+                                <div
+                                    class="payment-detail-label"
+                                >
+                                    Payment Date
+                                </div>
+
+                                <div
+                                    class="payment-detail-value"
+                                >
+                                    ${escapeHTML(
+                                        request.paymentDate ||
+                                        "-"
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="payment-detail"
+                            >
+
+                                <div
+                                    class="payment-detail-label"
+                                >
+                                    Method
+                                </div>
+
+                                <div
+                                    class="payment-detail-value"
+                                >
+                                    ${escapeHTML(
+                                        request.paymentMethod ||
+                                        "-"
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="payment-detail"
+                            >
+
+                                <div
+                                    class="payment-detail-label"
+                                >
+                                    UTR / Transaction ID
+                                </div>
+
+                                <div
+                                    class="payment-detail-value"
+                                >
+                                    ${escapeHTML(
+                                        request.utr ||
+                                        "-"
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="payment-detail"
+                            >
+
+                                <div
+                                    class="payment-detail-label"
+                                >
+                                    Screenshot
+                                </div>
+
+                                <div
+                                    class="payment-detail-value"
+                                >
+                                    ${escapeHTML(
+                                        request.screenshotName ||
+                                        "Not provided"
+                                    )}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="payment-actions"
+                        >
+
+                            <button
+                                class="action-btn approve"
+                                onclick="approvePayment('${request.id}')"
+                            >
+                                ✅ Approve
+                            </button>
+
+
+                            <button
+                                class="action-btn reject"
+                                onclick="rejectPayment('${request.id}')"
+                            >
+                                ❌ Reject
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+
+/* ================= APPROVE PAYMENT ================= */
+
+window.approvePayment =
+    async function(requestId){
+
+        const request =
+            allPaymentRequests.find(
+                item =>
+                    item.id === requestId
+            );
+
+
+        if(!request)
+            return;
+
+
+        if(
+            String(
+                request.status || ""
+            ).toLowerCase()
+            !==
+            "pending verification"
+        ){
+
+            alert(
+                "This payment request has already been processed."
+            );
+
+            return;
+
+        }
+
+
+        const amount =
+            Number(
+                request.amount || 0
+            );
+
+
+        if(
+            amount <= 0
+        ){
+
+            alert(
+                "Invalid payment amount."
+            );
+
+            return;
+
+        }
+
+
+        const confirmApprove =
+            confirm(
+                "Approve payment of " +
+                formatMoney(amount) +
+                " for " +
+                (
+                    request.sponsorName ||
+                    request.sponsorId ||
+                    "this sponsor"
+                ) +
+                "?"
+            );
+
+
+        if(!confirmApprove)
+            return;
+
+
+        try{
+
+            const requestRef =
+                doc(
+                    db,
+                    "PaymentRequests",
+                    requestId
+                );
+
+
+            const sponsorQuery =
+                allSponsors.find(
+                    sponsor =>
+                        sponsor.sponsorId ===
+                        request.sponsorId
+                );
+
+
+            if(!sponsorQuery){
+
+                alert(
+                    "Sponsor record not found for Sponsor ID: " +
+                    request.sponsorId
+                );
+
+                return;
+
+            }
+
+
+            const sponsorRef =
+                doc(
+                    db,
+                    "Sponsors",
+                    sponsorQuery.id
+                );
+
+
+            /*
+             * Transaction:
+             * 1. Check request is still pending
+             * 2. Update sponsor paid amount
+             * 3. Update sponsor balance
+             * 4. Mark request approved
+             */
+
+            await runTransaction(
+                db,
+                async (transaction) => {
+
+                    const requestSnap =
+                        await transaction.get(
+                            requestRef
+                        );
+
+
+                    if(
+                        !requestSnap.exists()
+                    ){
+
+                        throw new Error(
+                            "Payment request no longer exists."
+                        );
+
+                    }
+
+
+                    const requestData =
+                        requestSnap.data();
+
+
+                    if(
+                        String(
+                            requestData.status || ""
+                        ).toLowerCase()
+                        !==
+                        "pending verification"
+                    ){
+
+                        throw new Error(
+                            "This payment request has already been processed."
+                        );
+
+                    }
+
+
+                    const sponsorSnap =
+                        await transaction.get(
+                            sponsorRef
+                        );
+
+
+                    if(
+                        !sponsorSnap.exists()
+                    ){
+
+                        throw new Error(
+                            "Sponsor record not found."
+                        );
+
+                    }
+
+
+                    const sponsorData =
+                        sponsorSnap.data();
+
+
+                    const total =
+                        Number(
+                            sponsorData.totalAmount || 0
+                        );
+
+
+                    const oldPaid =
+                        Number(
+                            sponsorData.paidAmount || 0
+                        );
+
+
+                    const newPaid =
+                        oldPaid + amount;
+
+
+                    if(
+                        newPaid > total
+                    ){
+
+                        throw new Error(
+                            "This payment would make paid amount greater than sponsorship total."
+                        );
+
+                    }
+
+
+                    const newBalance =
+                        total - newPaid;
+
+
+                    transaction.update(
+                        sponsorRef,
+                        {
+
+                            paidAmount:
+                                newPaid,
+
+                            balanceAmount:
+                                newBalance,
+
+                            status:
+                                newBalance <= 0
+                                    ? "paid"
+                                    : "pending",
+
+                            lastPaymentAt:
+                                serverTimestamp()
+
+                        }
+                    );
+
+
+                    transaction.update(
+                        requestRef,
+                        {
+
+                            status:
+                                "Approved",
+
+                            reviewedAt:
+                                serverTimestamp(),
+
+                            reviewedBy:
+                                currentAdmin?.uid || "",
+
+                            reviewedByEmail:
+                                currentAdmin?.email || ""
+
+                        }
+                    );
+
+                }
+            );
+
+
+            /*
+             * Create permanent payment record
+             */
+
+            await addDoc(
+                collection(
+                    db,
+                    "Payments"
+                ),
+                {
+
+                    sponsorId:
+                        request.sponsorId || "",
+
+                    uid:
+                        request.uid || "",
+
+                    sponsorName:
+                        request.sponsorName || "",
+
+                    amount:
+                        amount,
+
+                    type:
+                        request.type ||
+                        "sponsorship",
+
+                    paymentMethod:
+                        request.paymentMethod ||
+                        "",
+
+                    utr:
+                        request.utr ||
+                        "",
+
+                    paymentDate:
+                        request.paymentDate ||
+                        "",
+
+                    paymentRequestId:
+                        requestId,
+
+                    status:
+                        "Paid",
+
+                    approvedBy:
+                        currentAdmin?.uid || "",
+
+                    approvedByEmail:
+                        currentAdmin?.email || "",
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            alert(
+                "Payment approved successfully."
+            );
+
+        }
+        catch(error){
+
+            console.error(
+                "Approve payment error:",
+                error
+            );
+
+
+            alert(
+                "Unable to approve payment:\n" +
+                error.message
+            );
+
+        }
+
+    };
+
+
+
+/* ================= REJECT PAYMENT ================= */
+
+window.rejectPayment =
+    async function(requestId){
+
+        const request =
+            allPaymentRequests.find(
+                item =>
+                    item.id === requestId
+            );
+
+
+        if(!request)
+            return;
+
+
+        if(
+            String(
+                request.status || ""
+            ).toLowerCase()
+            !==
+            "pending verification"
+        ){
+
+            alert(
+                "This payment request has already been processed."
+            );
+
+            return;
+
+        }
+
+
+        const confirmReject =
+            confirm(
+                "Reject this payment request?"
+            );
+
+
+        if(!confirmReject)
+            return;
+
+
+        try{
+
+            await updateDoc(
+                doc(
+                    db,
+                    "PaymentRequests",
+                    requestId
+                ),
+                {
+
+                    status:
+                        "Rejected",
+
+                    reviewedAt:
+                        serverTimestamp(),
+
+                    reviewedBy:
+                        currentAdmin?.uid || "",
+
+                    reviewedByEmail:
+                        currentAdmin?.email || ""
+
+                }
+            );
+
+
+            alert(
+                "Payment request rejected."
+            );
+
+        }
+        catch(error){
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "Unable to reject payment: " +
+                error.message
+            );
+
+        }
+
+    };
+
+
+
+/* ================= RENDER SPONSORS ================= */
+
+function renderSponsors(list){
+
+    if(!list.length){
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="empty"
+                >
+                    No sponsors found.
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+        list.map(
+            (sponsor) => {
+
+                const total =
+                    Number(
+                        sponsor.totalAmount || 0
+                    );
+
+
+                const paid =
+                    Number(
+                        sponsor.paidAmount || 0
+                    );
+
+
+                const balance =
+                    Number(
+                        sponsor.balanceAmount ??
+                        (
+                            total - paid
+                        )
+                    );
+
+
+                const status =
+                    balance <= 0
+                        ? "paid"
+                        : "pending";
+
+
+                return `
+
+                    <tr>
+
+                        <td>
+
+                            <span
+                                class="sponsor-id"
+                            >
+
+                                ${escapeHTML(
+                                    sponsor.sponsorId ||
+                                    "-"
+                                )}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <strong>
+
+                                ${escapeHTML(
+                                    sponsor.name ||
+                                    "-"
+                                )}
+
+                            </strong>
+
+                            <br>
+
+                            <small>
+
+                                ${escapeHTML(
+                                    sponsor.email ||
+                                    ""
+                                )}
+
+                            </small>
+
+                        </td>
+
+
+                        <td>
+
+                            ${escapeHTML(
+                                sponsor.phone ||
+                                "-"
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            ${formatMoney(
+                                total
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            ${formatMoney(
+                                paid
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            ${formatMoney(
+                                balance
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="status ${status}"
+                            >
+
+                                ${
+                                    status === "paid"
+                                    ? "PAID"
+                                    : "PENDING"
+                                }
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="action-btn edit"
+                                onclick="editSponsor('${sponsor.id}')"
+                            >
+                                Edit
+                            </button>
+
+
+                            <button
+                                class="action-btn delete"
+                                onclick="deleteSponsor('${sponsor.id}')"
+                            >
+                                Delete
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+
+/* ================= SEARCH ================= */
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        const query =
+            searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+        if(!query){
+
+            renderSponsors(
+                allSponsors
+            );
+
+            return;
+
+        }
+
+
+        const filtered =
+            allSponsors.filter(
+                (sponsor) => {
+
+                    return (
+
+                        String(
+                            sponsor.sponsorId ||
+                            ""
+                        )
+                        .toLowerCase()
+                        .includes(query)
+
+                        ||
+
+                        String(
+                            sponsor.name ||
+                            ""
+                        )
+                        .toLowerCase()
+                        .includes(query)
+
+                        ||
+
+                        String(
+                            sponsor.phone ||
+                            ""
+                        )
+                        .toLowerCase()
+                        .includes(query)
+
+                        ||
+
+                        String(
+                            sponsor.email ||
+                            ""
+                        )
+                        .toLowerCase()
+                        .includes(query)
+
+                    );
+
+                }
+            );
+
+
+        renderSponsors(
+            filtered
+        );
+
+    }
+);
+
+
+
+/* ================= DELETE ================= */
+
+window.deleteSponsor =
+    async function(id){
+
+        const sponsor =
+            allSponsors.find(
+                item =>
+                    item.id === id
+            );
+
+
+        if(!sponsor)
+            return;
+
+
+        const confirmDelete =
+            confirm(
+                "Delete sponsor " +
+                (
+                    sponsor.name ||
+                    ""
+                ) +
+                " (" +
+                (
+                    sponsor.sponsorId ||
+                    ""
+                ) +
+                ")?"
+            );
+
+
+        if(!confirmDelete)
+            return;
+
+
+        try{
+
+            await deleteDoc(
+                doc(
+                    db,
+                    "Sponsors",
+                    id
+                )
+            );
+
+        }
+        catch(error){
+
+            alert(
+                "Unable to delete sponsor: " +
+                error.message
+            );
+
+        }
+
+    };
+
+
+
+/* ================= EDIT ================= */
+
+window.editSponsor =
+    async function(id){
+
+        const sponsor =
+            allSponsors.find(
+                item =>
+                    item.id === id
+            );
+
+
+        if(!sponsor)
+            return;
+
+
+        const newName =
+            prompt(
+                "Sponsor Name:",
+                sponsor.name || ""
+            );
+
+
+        if(newName === null)
+            return;
+
+
+        const newPhone =
+            prompt(
+                "Phone:",
+                sponsor.phone || ""
+            );
+
+
+        if(newPhone === null)
+            return;
+
+
+        const newTotal =
+            prompt(
+                "Total Sponsorship Amount:",
+                sponsor.totalAmount || 0
+            );
+
+
+        if(newTotal === null)
+            return;
+
+
+        const newPaid =
+            prompt(
+                "Paid Amount:",
+                sponsor.paidAmount || 0
+            );
+
+
+        if(newPaid === null)
+            return;
+
+
+        const total =
+            Number(
+                newTotal
+            );
+
+
+        const paid =
+            Number(
+                newPaid
+            );
+
+
+        if(
+            total < 0 ||
+            paid < 0 ||
+            paid > total
+        ){
+
+            alert(
+                "Invalid amount. Paid amount cannot exceed total amount."
+            );
+
+            return;
+
+        }
+
+
+        try{
+
+            const balance =
+                total - paid;
+
+
+            await updateDoc(
+                doc(
+                    db,
+                    "Sponsors",
+                    id
+                ),
+                {
+
+                    name:
+                        newName.trim(),
+
+                    phone:
+                        newPhone.trim(),
+
+                    totalAmount:
+                        total,
+
+                    paidAmount:
+                        paid,
+
+                    balanceAmount:
+                        balance,
+
+                    status:
+                        balance <= 0
+                            ? "paid"
+                            : "pending"
+
+                }
+            );
+
+
+            alert(
+                "Sponsor updated successfully."
+            );
+
+        }
+        catch(error){
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "Unable to update sponsor: " +
+                error.message
+            );
+
+        }
+
+    };
+
+
+
+/* ================= LOGOUT ================= */
+
+logoutBtn.addEventListener(
+    "click",
+    async () => {
+
+        try{
+
+            await signOut(
+                auth
+            );
+
+
+            window.location.href =
+                "index.html";
+
+        }
+        catch(error){
+
+            alert(
+                "Logout failed."
+            );
+
+        }
+
+    }
+);
+
+
+</script>
+
+</body>
+</html>
