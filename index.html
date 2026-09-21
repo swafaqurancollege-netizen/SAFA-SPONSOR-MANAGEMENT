@@ -17,120 +17,81 @@
     body {
       min-height: 100vh;
       background: linear-gradient(135deg, #0f766e, #14b8a6);
-
       display: flex;
       justify-content: center;
       align-items: center;
-
       padding: 20px;
     }
 
     .login-box {
       width: 100%;
       max-width: 420px;
-
       background: white;
-
       border-radius: 20px;
-
       padding: 35px 28px;
-
-      box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.20);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.20);
     }
 
     .logo {
       width: 75px;
       height: 75px;
-
       margin: 0 auto 18px;
-
       border-radius: 50%;
-
       background: #0f766e;
-
       color: white;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       font-size: 28px;
       font-weight: bold;
     }
 
     h1 {
       text-align: center;
-
       color: #123;
-
       font-size: 25px;
-
       margin-bottom: 7px;
     }
 
     .subtitle {
       text-align: center;
-
       color: #777;
-
       font-size: 14px;
-
       margin-bottom: 28px;
     }
 
     label {
       display: block;
-
       margin-bottom: 7px;
-
       color: #333;
-
       font-size: 14px;
-
       font-weight: bold;
     }
 
     input {
       width: 100%;
-
       padding: 13px 14px;
-
       border: 1px solid #ddd;
-
       border-radius: 10px;
-
       outline: none;
-
       font-size: 15px;
-
       margin-bottom: 18px;
     }
 
     input:focus {
       border-color: #0f766e;
-
-      box-shadow:
-        0 0 0 2px rgba(15, 118, 110, 0.10);
+      box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.10);
     }
 
     button {
       width: 100%;
-
       padding: 14px;
-
       border: none;
-
       border-radius: 10px;
-
       background: #0f766e;
-
       color: white;
-
       font-size: 16px;
-
       font-weight: bold;
-
       cursor: pointer;
     }
 
@@ -140,29 +101,21 @@
 
     button:disabled {
       background: #9ca3af;
-
       cursor: not-allowed;
     }
 
     .message {
       margin-top: 15px;
-
       text-align: center;
-
       font-size: 14px;
-
       min-height: 20px;
-
       line-height: 1.5;
     }
 
     .footer {
       text-align: center;
-
       margin-top: 25px;
-
       color: #999;
-
       font-size: 12px;
     }
   </style>
@@ -176,9 +129,7 @@
       SP
     </div>
 
-    <h1>
-      Sponsor Management
-    </h1>
+    <h1>Sponsor Management</h1>
 
     <p class="subtitle">
       Login to continue
@@ -253,50 +204,47 @@
       from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-    // =========================
-    // FIREBASE CONFIG
-    // =========================
+    // =====================================
+    // CURRENT FIREBASE CONFIG
+    // =====================================
 
     const firebaseConfig = {
 
       apiKey:
-        "AIzaSyA4GwvJ1W12dB61MknzffCAazBVN60gCOc",
+        "AIzaSyCQfWt8YCC7c2vbyiUEUHERCFLnvKYf0_Q",
 
       authDomain:
-        "sponsors-management-port-2300e.firebaseapp.com",
+        "safa-sponsor-management.firebaseapp.com",
 
       projectId:
-        "sponsors-management-port-2300e",
+        "safa-sponsor-management",
 
       storageBucket:
-        "sponsors-management-port-2300e.firebasestorage.app",
+        "safa-sponsor-management.firebasestorage.app",
 
       messagingSenderId:
-        "302644033627",
+        "580781673057",
 
       appId:
-        "1:302644033627:web:bfb03201ee44bcf616677e"
+        "1:580781673057:web:e8601de35c6e2678f8b820"
 
     };
 
 
-    // =========================
+    // =====================================
     // INITIALIZE FIREBASE
-    // =========================
+    // =====================================
 
-    const app =
-      initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
 
-    const auth =
-      getAuth(app);
+    const auth = getAuth(app);
 
-    const db =
-      getFirestore(app);
+    const db = getFirestore(app);
 
 
-    // =========================
+    // =====================================
     // ELEMENTS
-    // =========================
+    // =====================================
 
     const loginForm =
       document.getElementById("loginForm");
@@ -308,9 +256,9 @@
       document.getElementById("message");
 
 
-    // =========================
+    // =====================================
     // LOGIN
-    // =========================
+    // =====================================
 
     loginForm.addEventListener(
       "submit",
@@ -318,13 +266,11 @@
 
         event.preventDefault();
 
-
         const email =
           document
             .getElementById("email")
             .value
             .trim();
-
 
         const password =
           document
@@ -353,9 +299,9 @@
 
         try {
 
-          // =========================
-          // FIREBASE LOGIN
-          // =========================
+          // =====================================
+          // FIREBASE AUTH LOGIN
+          // =====================================
 
           const userCredential =
             await signInWithEmailAndPassword(
@@ -370,14 +316,23 @@
 
 
           console.log(
-            "Logged in UID:",
+            "LOGIN SUCCESS"
+          );
+
+          console.log(
+            "UID:",
             user.uid
           );
 
+          console.log(
+            "Email:",
+            user.email
+          );
 
-          // =========================
-          // GET USER DOCUMENT
-          // =========================
+
+          // =====================================
+          // GET USERS/{UID}
+          // =====================================
 
           const userRef =
             doc(
@@ -391,25 +346,37 @@
             await getDoc(userRef);
 
 
-          // =========================
+          console.log(
+            "User document exists:",
+            userSnapshot.exists()
+          );
+
+
+          // =====================================
           // USER DOCUMENT NOT FOUND
-          // =========================
+          // =====================================
 
           if (!userSnapshot.exists()) {
 
             await signOut(auth);
 
-            throw new Error(
-              "User profile not found in Firestore. Please create users/" +
-              user.uid +
-              " document."
+            message.style.color =
+              "#dc2626";
+
+            message.textContent =
+              "Login successful, but user profile was not found.";
+
+            console.error(
+              "Missing Firestore document: users/" + user.uid
             );
+
+            return;
           }
 
 
-          // =========================
-          // GET USER DATA
-          // =========================
+          // =====================================
+          // USER DATA
+          // =====================================
 
           const userData =
             userSnapshot.data();
@@ -420,14 +387,19 @@
 
 
           console.log(
-            "User role:",
+            "USER DATA:",
+            userData
+          );
+
+          console.log(
+            "ROLE:",
             role
           );
 
 
-          // =========================
-          // ADMIN LOGIN
-          // =========================
+          // =====================================
+          // ADMIN
+          // =====================================
 
           if (role === "admin") {
 
@@ -443,16 +415,16 @@
               window.location.href =
                 "dashboard.html";
 
-            }, 500);
+            }, 300);
 
 
             return;
           }
 
 
-          // =========================
-          // SPONSOR LOGIN
-          // =========================
+          // =====================================
+          // SPONSOR
+          // =====================================
 
           if (role === "sponsor") {
 
@@ -468,22 +440,24 @@
               window.location.href =
                 "sponsor.html";
 
-            }, 500);
+            }, 300);
 
 
             return;
           }
 
 
-          // =========================
+          // =====================================
           // INVALID ROLE
-          // =========================
+          // =====================================
 
           await signOut(auth);
 
-          throw new Error(
-            "Invalid user role. Please contact administrator."
-          );
+          message.style.color =
+            "#dc2626";
+
+          message.textContent =
+            "Invalid user role. Please contact administrator.";
 
         }
 
@@ -491,8 +465,18 @@
         catch (error) {
 
           console.error(
-            "Login Error:",
+            "LOGIN ERROR:",
             error
+          );
+
+          console.error(
+            "ERROR CODE:",
+            error.code
+          );
+
+          console.error(
+            "ERROR MESSAGE:",
+            error.message
           );
 
 
@@ -500,9 +484,9 @@
             "#dc2626";
 
 
-          // =========================
-          // INVALID LOGIN
-          // =========================
+          // =====================================
+          // INVALID CREDENTIAL
+          // =====================================
 
           if (
             error.code ===
@@ -515,9 +499,9 @@
           }
 
 
-          // =========================
+          // =====================================
           // INVALID EMAIL
-          // =========================
+          // =====================================
 
           else if (
             error.code ===
@@ -530,9 +514,9 @@
           }
 
 
-          // =========================
+          // =====================================
           // USER DISABLED
-          // =========================
+          // =====================================
 
           else if (
             error.code ===
@@ -545,9 +529,9 @@
           }
 
 
-          // =========================
+          // =====================================
           // TOO MANY ATTEMPTS
-          // =========================
+          // =====================================
 
           else if (
             error.code ===
@@ -560,9 +544,9 @@
           }
 
 
-          // =========================
-          // PERMISSION DENIED
-          // =========================
+          // =====================================
+          // FIRESTORE PERMISSION
+          // =====================================
 
           else if (
             error.code ===
@@ -570,14 +554,14 @@
           ) {
 
             message.textContent =
-              "Firestore permission denied. Please check Firebase rules.";
+              "Firestore permission denied.";
 
           }
 
 
-          // =========================
+          // =====================================
           // OTHER ERROR
-          // =========================
+          // =====================================
 
           else {
 
