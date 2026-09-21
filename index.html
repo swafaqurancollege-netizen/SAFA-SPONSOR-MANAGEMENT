@@ -17,81 +17,120 @@
     body {
       min-height: 100vh;
       background: linear-gradient(135deg, #0f766e, #14b8a6);
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       padding: 20px;
     }
 
     .login-box {
       width: 100%;
       max-width: 420px;
+
       background: white;
+
       border-radius: 20px;
+
       padding: 35px 28px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.20);
+
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.20);
     }
 
     .logo {
       width: 75px;
       height: 75px;
+
       margin: 0 auto 18px;
+
       border-radius: 50%;
+
       background: #0f766e;
+
       color: white;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       font-size: 28px;
       font-weight: bold;
     }
 
     h1 {
       text-align: center;
+
       color: #123;
+
       font-size: 25px;
+
       margin-bottom: 7px;
     }
 
     .subtitle {
       text-align: center;
+
       color: #777;
+
       font-size: 14px;
+
       margin-bottom: 28px;
     }
 
     label {
       display: block;
+
       margin-bottom: 7px;
+
       color: #333;
+
       font-size: 14px;
+
       font-weight: bold;
     }
 
     input {
       width: 100%;
+
       padding: 13px 14px;
+
       border: 1px solid #ddd;
+
       border-radius: 10px;
+
       outline: none;
+
       font-size: 15px;
+
       margin-bottom: 18px;
     }
 
     input:focus {
       border-color: #0f766e;
-      box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.10);
+
+      box-shadow:
+        0 0 0 2px rgba(15, 118, 110, 0.10);
     }
 
     button {
       width: 100%;
+
       padding: 14px;
+
       border: none;
+
       border-radius: 10px;
+
       background: #0f766e;
+
       color: white;
+
       font-size: 16px;
+
       font-weight: bold;
+
       cursor: pointer;
     }
 
@@ -101,21 +140,65 @@
 
     button:disabled {
       background: #9ca3af;
+
       cursor: not-allowed;
     }
 
     .message {
       margin-top: 15px;
+
       text-align: center;
+
       font-size: 14px;
+
       min-height: 20px;
+
       line-height: 1.5;
+
+      word-break: break-word;
+    }
+
+    .redirect-buttons {
+      display: none;
+
+      margin-top: 15px;
+
+      gap: 10px;
+    }
+
+    .redirect-buttons button {
+      background: #2563eb;
+    }
+
+    .redirect-buttons button:last-child {
+      background: #16a34a;
+    }
+
+    .debug {
+      display: none;
+
+      margin-top: 15px;
+
+      padding: 10px;
+
+      background: #f3f4f6;
+
+      border-radius: 8px;
+
+      font-size: 12px;
+
+      color: #444;
+
+      word-break: break-word;
     }
 
     .footer {
       text-align: center;
+
       margin-top: 25px;
+
       color: #999;
+
       font-size: 12px;
     }
   </style>
@@ -129,11 +212,14 @@
       SP
     </div>
 
-    <h1>Sponsor Management</h1>
+    <h1>
+      Sponsor Management
+    </h1>
 
     <p class="subtitle">
       Login to continue
     </p>
+
 
     <form id="loginForm">
 
@@ -149,6 +235,7 @@
         required
       >
 
+
       <label for="password">
         Password
       </label>
@@ -161,6 +248,7 @@
         required
       >
 
+
       <button
         type="submit"
         id="loginButton"
@@ -168,12 +256,42 @@
         Login
       </button>
 
+
       <div
         class="message"
         id="message"
       ></div>
 
+
+      <div
+        class="redirect-buttons"
+        id="redirectButtons"
+      >
+
+        <button
+          type="button"
+          id="sponsorButton"
+        >
+          Open Sponsor Dashboard
+        </button>
+
+        <button
+          type="button"
+          id="adminButton"
+        >
+          Open Admin Dashboard
+        </button>
+
+      </div>
+
+
+      <div
+        class="debug"
+        id="debug"
+      ></div>
+
     </form>
+
 
     <div class="footer">
       Sponsor Management System
@@ -182,7 +300,9 @@
   </div>
 
 
-  <!-- FIREBASE -->
+  <!-- =====================================================
+       FIREBASE
+       ===================================================== -->
 
   <script type="module">
 
@@ -204,9 +324,9 @@
       from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-    // =====================================
+    // =====================================================
     // CURRENT FIREBASE CONFIG
-    // =====================================
+    // =====================================================
 
     const firebaseConfig = {
 
@@ -231,20 +351,23 @@
     };
 
 
-    // =====================================
-    // INITIALIZE FIREBASE
-    // =====================================
+    // =====================================================
+    // INITIALIZE
+    // =====================================================
 
-    const app = initializeApp(firebaseConfig);
+    const app =
+      initializeApp(firebaseConfig);
 
-    const auth = getAuth(app);
+    const auth =
+      getAuth(app);
 
-    const db = getFirestore(app);
+    const db =
+      getFirestore(app);
 
 
-    // =====================================
+    // =====================================================
     // ELEMENTS
-    // =====================================
+    // =====================================================
 
     const loginForm =
       document.getElementById("loginForm");
@@ -255,10 +378,88 @@
     const message =
       document.getElementById("message");
 
+    const debug =
+      document.getElementById("debug");
 
-    // =====================================
+    const redirectButtons =
+      document.getElementById("redirectButtons");
+
+    const sponsorButton =
+      document.getElementById("sponsorButton");
+
+    const adminButton =
+      document.getElementById("adminButton");
+
+
+    // =====================================================
+    // HELPER
+    // =====================================================
+
+    function showMessage(text, color = "#333") {
+
+      message.style.color = color;
+
+      message.textContent = text;
+
+    }
+
+
+    function showDebug(text) {
+
+      debug.style.display = "block";
+
+      debug.textContent = text;
+
+    }
+
+
+    function hideRedirectButtons() {
+
+      redirectButtons.style.display = "none";
+
+    }
+
+
+    function showRedirectButtons() {
+
+      redirectButtons.style.display = "flex";
+
+      redirectButtons.style.flexDirection = "column";
+
+    }
+
+
+    // =====================================================
+    // DIRECT BUTTONS
+    // =====================================================
+
+    sponsorButton.addEventListener(
+      "click",
+      () => {
+
+        window.location.replace(
+          "./sponsor.html"
+        );
+
+      }
+    );
+
+
+    adminButton.addEventListener(
+      "click",
+      () => {
+
+        window.location.replace(
+          "./dashboard.html"
+        );
+
+      }
+    );
+
+
+    // =====================================================
     // LOGIN
-    // =====================================
+    // =====================================================
 
     loginForm.addEventListener(
       "submit",
@@ -266,11 +467,16 @@
 
         event.preventDefault();
 
+
+        hideRedirectButtons();
+
+
         const email =
           document
             .getElementById("email")
             .value
             .trim();
+
 
         const password =
           document
@@ -280,12 +486,13 @@
 
         if (!email || !password) {
 
-          message.style.color = "#dc2626";
-
-          message.textContent =
-            "Please enter email and password.";
+          showMessage(
+            "Please enter email and password.",
+            "#dc2626"
+          );
 
           return;
+
         }
 
 
@@ -294,14 +501,20 @@
         loginButton.textContent =
           "Logging in...";
 
-        message.textContent = "";
+        showMessage(
+          "Please wait...",
+          "#0f766e"
+        );
+
+
+        debug.style.display = "none";
 
 
         try {
 
-          // =====================================
+          // =================================================
           // FIREBASE AUTH LOGIN
-          // =====================================
+          // =================================================
 
           const userCredential =
             await signInWithEmailAndPassword(
@@ -325,14 +538,20 @@
           );
 
           console.log(
-            "Email:",
+            "EMAIL:",
             user.email
           );
 
 
-          // =====================================
-          // GET USERS/{UID}
-          // =====================================
+          // =================================================
+          // GET USERS DOCUMENT
+          // =================================================
+
+          showMessage(
+            "Login successful. Checking account...",
+            "#0f766e"
+          );
+
 
           const userRef =
             doc(
@@ -346,37 +565,41 @@
             await getDoc(userRef);
 
 
-          console.log(
-            "User document exists:",
-            userSnapshot.exists()
-          );
-
-
-          // =====================================
-          // USER DOCUMENT NOT FOUND
-          // =====================================
+          // =================================================
+          // DOCUMENT NOT FOUND
+          // =================================================
 
           if (!userSnapshot.exists()) {
 
             await signOut(auth);
 
-            message.style.color =
-              "#dc2626";
 
-            message.textContent =
-              "Login successful, but user profile was not found.";
-
-            console.error(
-              "Missing Firestore document: users/" + user.uid
+            showMessage(
+              "User profile not found.",
+              "#dc2626"
             );
 
+
+            showDebug(
+              "Firebase Auth login succeeded, but Firestore document users/" +
+              user.uid +
+              " was not found."
+            );
+
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+              "Login";
+
             return;
+
           }
 
 
-          // =====================================
+          // =================================================
           // USER DATA
-          // =====================================
+          // =================================================
 
           const userData =
             userSnapshot.data();
@@ -384,6 +607,10 @@
 
           const role =
             userData.role;
+
+
+          const sponsorId =
+            userData.sponsorId || "";
 
 
           console.log(
@@ -396,68 +623,102 @@
             role
           );
 
+          console.log(
+            "SPONSOR ID:",
+            sponsorId
+          );
 
-          // =====================================
+
+          // =================================================
           // ADMIN
-          // =====================================
+          // =================================================
 
           if (role === "admin") {
 
-            message.style.color =
-              "#0f766e";
+            showMessage(
+              "Admin login successful.",
+              "#0f766e"
+            );
 
-            message.textContent =
-              "Login successful. Opening dashboard...";
+
+            showDebug(
+              "Role detected: ADMIN"
+            );
 
 
-            setTimeout(() => {
+            /*
+              Direct redirect.
+              No setTimeout.
+            */
 
-              window.location.href =
-                "dashboard.html";
-
-            }, 300);
+            window.location.replace(
+              "./dashboard.html"
+            );
 
 
             return;
+
           }
 
 
-          // =====================================
+          // =================================================
           // SPONSOR
-          // =====================================
+          // =================================================
 
           if (role === "sponsor") {
 
-            message.style.color =
-              "#0f766e";
+            showMessage(
+              "Sponsor login successful.",
+              "#0f766e"
+            );
 
-            message.textContent =
-              "Login successful. Opening sponsor page...";
+
+            showDebug(
+              "Role detected: SPONSOR" +
+              (sponsorId
+                ? " | Sponsor ID: " + sponsorId
+                : "")
+            );
 
 
-            setTimeout(() => {
+            /*
+              Direct redirect.
+              No setTimeout.
+            */
 
-              window.location.href =
-                "sponsor.html";
-
-            }, 300);
+            window.location.replace(
+              "./sponsor.html"
+            );
 
 
             return;
+
           }
 
 
-          // =====================================
+          // =================================================
           // INVALID ROLE
-          // =====================================
+          // =================================================
 
           await signOut(auth);
 
-          message.style.color =
-            "#dc2626";
 
-          message.textContent =
-            "Invalid user role. Please contact administrator.";
+          showMessage(
+            "Invalid user role.",
+            "#dc2626"
+          );
+
+
+          showDebug(
+            "The users document exists, but the role is: " +
+            String(role)
+          );
+
+
+          loginButton.disabled = false;
+
+          loginButton.textContent =
+            "Login";
 
         }
 
@@ -469,10 +730,12 @@
             error
           );
 
+
           console.error(
             "ERROR CODE:",
             error.code
           );
+
 
           console.error(
             "ERROR MESSAGE:",
@@ -480,94 +743,107 @@
           );
 
 
-          message.style.color =
-            "#dc2626";
-
-
-          // =====================================
-          // INVALID CREDENTIAL
-          // =====================================
+          // =================================================
+          // AUTH ERRORS
+          // =================================================
 
           if (
             error.code ===
             "auth/invalid-credential"
           ) {
 
-            message.textContent =
-              "Invalid email or password.";
+            showMessage(
+              "Invalid email or password.",
+              "#dc2626"
+            );
 
           }
 
-
-          // =====================================
-          // INVALID EMAIL
-          // =====================================
 
           else if (
             error.code ===
             "auth/invalid-email"
           ) {
 
-            message.textContent =
-              "Please enter a valid email.";
+            showMessage(
+              "Please enter a valid email.",
+              "#dc2626"
+            );
 
           }
 
-
-          // =====================================
-          // USER DISABLED
-          // =====================================
 
           else if (
             error.code ===
             "auth/user-disabled"
           ) {
 
-            message.textContent =
-              "This account has been disabled.";
+            showMessage(
+              "This account has been disabled.",
+              "#dc2626"
+            );
 
           }
 
-
-          // =====================================
-          // TOO MANY ATTEMPTS
-          // =====================================
 
           else if (
             error.code ===
             "auth/too-many-requests"
           ) {
 
-            message.textContent =
-              "Too many attempts. Please try again later.";
+            showMessage(
+              "Too many attempts. Please try again later.",
+              "#dc2626"
+            );
 
           }
 
 
-          // =====================================
+          // =================================================
           // FIRESTORE PERMISSION
-          // =====================================
+          // =================================================
 
           else if (
             error.code ===
             "permission-denied"
           ) {
 
-            message.textContent =
-              "Firestore permission denied.";
+            showMessage(
+              "Firestore permission denied.",
+              "#dc2626"
+            );
+
+
+            showDebug(
+              "Firebase Auth login worked, but Firestore denied access to users/" +
+              (auth.currentUser
+                ? auth.currentUser.uid
+                : "")
+            );
 
           }
 
 
-          // =====================================
+          // =================================================
           // OTHER ERROR
-          // =====================================
+          // =================================================
 
           else {
 
-            message.textContent =
+            showMessage(
               error.message ||
-              "Login failed. Please try again.";
+              "Login failed. Please try again.",
+              "#dc2626"
+            );
+
+
+            showDebug(
+              "Error code: " +
+              (error.code || "unknown") +
+              " | " +
+              "Error: " +
+              (error.message || "unknown error")
+            );
 
           }
 
