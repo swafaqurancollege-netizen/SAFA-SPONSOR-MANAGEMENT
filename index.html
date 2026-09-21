@@ -7,7 +7,6 @@
   <title>Sponsor Management - Login</title>
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -37,7 +36,7 @@
       padding: 35px 28px;
 
       box-shadow:
-        0 15px 40px rgba(0,0,0,0.20);
+        0 15px 40px rgba(0, 0, 0, 0.20);
     }
 
     .logo {
@@ -112,7 +111,7 @@
       border-color: #0f766e;
 
       box-shadow:
-        0 0 0 2px rgba(15,118,110,0.10);
+        0 0 0 2px rgba(15, 118, 110, 0.10);
     }
 
     button {
@@ -153,6 +152,8 @@
       font-size: 14px;
 
       min-height: 20px;
+
+      line-height: 1.5;
     }
 
     .footer {
@@ -164,40 +165,30 @@
 
       font-size: 12px;
     }
-
   </style>
-
 </head>
-
 
 <body>
 
-
   <div class="login-box">
-
 
     <div class="logo">
       SP
     </div>
 
-
     <h1>
       Sponsor Management
     </h1>
-
 
     <p class="subtitle">
       Login to continue
     </p>
 
-
     <form id="loginForm">
-
 
       <label for="email">
         Email
       </label>
-
 
       <input
         type="email"
@@ -207,11 +198,9 @@
         required
       >
 
-
       <label for="password">
         Password
       </label>
-
 
       <input
         type="password"
@@ -221,7 +210,6 @@
         required
       >
 
-
       <button
         type="submit"
         id="loginButton"
@@ -229,221 +217,156 @@
         Login
       </button>
 
-
       <div
         class="message"
         id="message"
       ></div>
 
-
     </form>
-
 
     <div class="footer">
       Sponsor Management System
     </div>
 
-
   </div>
-
 
 
   <!-- FIREBASE -->
 
-
   <script type="module">
 
-
     import { initializeApp }
-
       from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-
     import {
-
       getAuth,
-
       signInWithEmailAndPassword,
-
       signOut
-
     }
-
       from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-
     import {
-
       getFirestore,
-
       doc,
-
       getDoc
-
     }
-
       from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-
-    /* =========================
-       FIREBASE CONFIG
-    ========================= */
-
+    // =========================
+    // FIREBASE CONFIG
+    // =========================
 
     const firebaseConfig = {
-
 
       apiKey:
         "AIzaSyA4GwvJ1W12dB61MknzffCAazBVN60gCOc",
 
-
       authDomain:
         "sponsors-management-port-2300e.firebaseapp.com",
-
 
       projectId:
         "sponsors-management-port-2300e",
 
-
       storageBucket:
         "sponsors-management-port-2300e.firebasestorage.app",
-
 
       messagingSenderId:
         "302644033627",
 
-
       appId:
         "1:302644033627:web:bfb03201ee44bcf616677e"
-
 
     };
 
 
-
-    /* =========================
-       INITIALIZE FIREBASE
-    ========================= */
-
+    // =========================
+    // INITIALIZE FIREBASE
+    // =========================
 
     const app =
       initializeApp(firebaseConfig);
 
-
     const auth =
       getAuth(app);
-
 
     const db =
       getFirestore(app);
 
 
-
-    /* =========================
-       ELEMENTS
-    ========================= */
-
+    // =========================
+    // ELEMENTS
+    // =========================
 
     const loginForm =
       document.getElementById("loginForm");
 
-
     const loginButton =
       document.getElementById("loginButton");
-
 
     const message =
       document.getElementById("message");
 
 
-
-    /* =========================
-       LOGIN
-    ========================= */
-
+    // =========================
+    // LOGIN
+    // =========================
 
     loginForm.addEventListener(
-
       "submit",
-
       async (event) => {
-
 
         event.preventDefault();
 
 
-
         const email =
-
           document
             .getElementById("email")
             .value
             .trim();
 
 
-
         const password =
-
           document
             .getElementById("password")
             .value;
 
 
-
         if (!email || !password) {
 
-
-          message.style.color =
-            "#dc2626";
-
+          message.style.color = "#dc2626";
 
           message.textContent =
             "Please enter email and password.";
 
-
           return;
-
         }
-
 
 
         loginButton.disabled = true;
 
-
         loginButton.textContent =
           "Logging in...";
-
 
         message.textContent = "";
 
 
-
         try {
 
-
-          /* =========================
-             FIREBASE LOGIN
-          ========================= */
-
+          // =========================
+          // FIREBASE LOGIN
+          // =========================
 
           const userCredential =
-
             await signInWithEmailAndPassword(
-
               auth,
-
               email,
-
               password
-
             );
-
 
 
           const user =
             userCredential.user;
-
 
 
           console.log(
@@ -452,55 +375,41 @@
           );
 
 
-
-          /* =========================
-             GET USER DOCUMENT
-          ========================= */
-
+          // =========================
+          // GET USER DOCUMENT
+          // =========================
 
           const userRef =
-
             doc(
-
               db,
-
               "users",
-
               user.uid
-
             );
-
 
 
           const userSnapshot =
-
             await getDoc(userRef);
 
 
-
-          /* USER DOCUMENT NOT FOUND */
-
+          // =========================
+          // USER DOCUMENT NOT FOUND
+          // =========================
 
           if (!userSnapshot.exists()) {
 
-
             await signOut(auth);
 
-
             throw new Error(
-
-              "User profile not found in Firestore."
-
+              "User profile not found in Firestore. Please create users/" +
+              user.uid +
+              " document."
             );
-
           }
 
 
-
-          /* =========================
-             GET ROLE
-          ========================= */
-
+          // =========================
+          // GET USER DATA
+          // =========================
 
           const userData =
             userSnapshot.data();
@@ -510,102 +419,76 @@
             userData.role;
 
 
-
           console.log(
             "User role:",
             role
           );
 
 
-
-          /* =========================
-             ADMIN LOGIN
-          ========================= */
-
+          // =========================
+          // ADMIN LOGIN
+          // =========================
 
           if (role === "admin") {
-
 
             message.style.color =
               "#0f766e";
 
-
             message.textContent =
-              "Login successful...";
-
+              "Login successful. Opening dashboard...";
 
 
             setTimeout(() => {
-
 
               window.location.href =
                 "dashboard.html";
 
-
             }, 500);
 
 
-
             return;
-
           }
 
 
-
-          /* =========================
-             SPONSOR LOGIN
-          ========================= */
-
+          // =========================
+          // SPONSOR LOGIN
+          // =========================
 
           if (role === "sponsor") {
-
 
             message.style.color =
               "#0f766e";
 
-
             message.textContent =
-              "Login successful...";
-
+              "Login successful. Opening sponsor page...";
 
 
             setTimeout(() => {
 
-
               window.location.href =
                 "sponsor.html";
-
 
             }, 500);
 
 
-
             return;
-
           }
 
 
-
-          /* =========================
-             INVALID ROLE
-          ========================= */
-
+          // =========================
+          // INVALID ROLE
+          // =========================
 
           await signOut(auth);
 
-
           throw new Error(
-
             "Invalid user role. Please contact administrator."
-
           );
-
 
         }
 
 
         catch (error) {
-
 
           console.error(
             "Login Error:",
@@ -613,116 +496,109 @@
           );
 
 
-
           message.style.color =
             "#dc2626";
 
 
-
-          /* INVALID LOGIN */
-
+          // =========================
+          // INVALID LOGIN
+          // =========================
 
           if (
-
             error.code ===
             "auth/invalid-credential"
-
           ) {
-
 
             message.textContent =
               "Invalid email or password.";
 
-
           }
 
 
-          /* INVALID EMAIL */
-
+          // =========================
+          // INVALID EMAIL
+          // =========================
 
           else if (
-
             error.code ===
             "auth/invalid-email"
-
           ) {
-
 
             message.textContent =
               "Please enter a valid email.";
 
-
           }
 
 
-          /* DISABLED USER */
-
+          // =========================
+          // USER DISABLED
+          // =========================
 
           else if (
-
             error.code ===
             "auth/user-disabled"
-
           ) {
-
 
             message.textContent =
               "This account has been disabled.";
 
-
           }
 
 
-          /* TOO MANY ATTEMPTS */
-
+          // =========================
+          // TOO MANY ATTEMPTS
+          // =========================
 
           else if (
-
             error.code ===
             "auth/too-many-requests"
-
           ) {
-
 
             message.textContent =
               "Too many attempts. Please try again later.";
 
+          }
+
+
+          // =========================
+          // PERMISSION DENIED
+          // =========================
+
+          else if (
+            error.code ===
+            "permission-denied"
+          ) {
+
+            message.textContent =
+              "Firestore permission denied. Please check Firebase rules.";
 
           }
 
 
-          /* OTHER ERROR */
-
+          // =========================
+          // OTHER ERROR
+          // =========================
 
           else {
 
-
             message.textContent =
-              error.message;
-
+              error.message ||
+              "Login failed. Please try again.";
 
           }
-
 
         }
 
 
-
         loginButton.disabled = false;
-
 
         loginButton.textContent =
           "Login";
 
-
       }
-
     );
-
 
   </script>
 
-
 </body>
-
 </html>
